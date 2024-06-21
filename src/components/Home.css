@@ -7,6 +7,20 @@
     background-color: #f4f4f4;
 }
 
+.top-secret-banner {
+    margin-top: 4rem;
+    width: 100%;
+    background-color: #fce83a;
+    color: black;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 0.15rem 0;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+}
+
 .bounce {
     font-size: 3rem;
     text-align: center;

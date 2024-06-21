@@ -1,13 +1,27 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Home.css';
 
 const Home = () => {
+  const [bannerText, setBannerText] = useState('Top Secret//SCI');
+
   useEffect(() => {
     document.title = "Home";
+
+    const texts = ['Top Secret//SCI', '54 6F 70 20 53 65 63 72 65 74 2F 2F 53 43 49', 'GO BIG OR GO HOME', '47 4F 20 42 49 47 20 4F 52 20 47 4F 20 48 4F 4D 45'];
+    let index = 0;
+
+    const intervalId = setInterval(() => {
+      index = (index + 1) % texts.length;
+      setBannerText(texts[index]);
+    }, 10000); // Change text every 10 seconds
+
+    return () => clearInterval(intervalId);
+
   }, []);
 
   return (
     <div className="home-container">
+      <div className="top-secret-banner">{bannerText}</div>
       <h1 className="bounce">
         <span style={{ '--index': 1 }}>W</span>
         <span style={{ '--index': 2 }}>h</span>
