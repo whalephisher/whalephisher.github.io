@@ -7,22 +7,20 @@ import Projects from './components/Projects';
 import Contact from './components/Contact';
 import './App.css';
 
-const App = () => {
+function App() {
   return (
     <Router>
-      <div>
+      <div className="App">
         <Header />
-        <div className="container">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/projects" element={<Projects />} />
-            <Route path="/contact" element={<Contact />} />
-          </Routes>
-        </div>
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
       </div>
     </Router>
   );
-};
+}
 
 export default App;

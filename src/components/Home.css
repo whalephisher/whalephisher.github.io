@@ -1,0 +1,80 @@
+.home-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    background-color: #f4f4f4;
+}
+
+.bounce {
+    font-size: 3rem;
+    text-align: center;
+}
+
+.bounce span {
+    display: inline-block;
+    opacity: 0;
+    animation: bounce-letter 15s infinite forwards;
+    animation-delay: calc(0.5s + 0.2s * var(--index));
+}
+
+@keyframes bounce-letter {
+
+    0%,
+    100% {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+
+    10%,
+    90% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.gabriel-liau {
+    font-size: 2rem;
+    text-align: center;
+    margin-top: 1rem;
+    opacity: 0;
+    animation: wave-in 12s forwards;
+    animation-delay: calc(5s + 0.2s * var(--index));
+    /* Start after Whalephisher has fully animated */
+}
+
+.gabriel-liau span {
+    display: inline-block;
+    opacity: 0;
+    animation: wave-letter 12s infinite forwards;
+    animation-delay: calc(5s + 0.2s * var(--index));
+    /* Start animating right after Whalephisher finishes */
+}
+
+@keyframes wave-in {
+    0% {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes wave-letter {
+
+    0%,
+    100% {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+
+    10%,
+    90% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
