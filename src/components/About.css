@@ -1,24 +1,34 @@
-/* About.css */
-.about-content {
-    margin: 5rem;
+/* About page layout */
+.about-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr;
 }
 
-.about-content {
-    padding: 1.5rem;
-    margin-bottom: 2rem;
+@media (min-width: 900px) {
+    .about-grid {
+        grid-template-columns: 1fr 1fr;
+    }
 }
 
-.about-content h1 {
-    font-size: 3rem;
-    margin-bottom: 2rem;
+.about-grid h2 {
+    margin-bottom: .5rem;
 }
 
-.about-content h2 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
+.about-grid p {
+    margin-bottom: .75rem;
 }
 
-.about-content p {
-    font-size: 1.15rem;
-    line-height: 2;
+/* Improve list readability */
+.about-grid ul {
+    padding-left: 1.2rem;
+    margin-top: .25rem;
+}
+
+.about-grid li {
+    margin: .25rem 0;
+}
+
+.about-grid li::marker {
+    color: var(--primary);
 }

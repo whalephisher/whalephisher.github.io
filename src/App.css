@@ -1,13 +1,268 @@
-/* Global CSS reset */
+/* Global reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+:root {
+  --bg: #0b1020;
+  --bg-soft: #0f1733;
+  --text: #e6e8f0;
+  --muted: #aab1c6;
+  --primary: #6ec1ff;
+  --primary-600: #3ba3ff;
+  --accent: #b794f6;
+  --card: #121931;
+  --border: rgba(255, 255, 255, 0.08);
+  --radius: 14px;
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  background-color: #f5f5f7;
-  color: #333;
-  margin-top: 5rem;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  background: radial-gradient(1200px 600px at 80% -10%, rgba(110, 193, 255, 0.12), transparent),
+    radial-gradient(800px 500px at 0% 100%, rgba(183, 148, 246, 0.10), transparent),
+    var(--bg);
+  /* Prevent gradient layers from repeating/tiling on long pages */
+  background-repeat: no-repeat;
+  color: var(--text);
+  line-height: 1.6;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.content {
+  flex: 1;
+  padding-top: 4.5rem;
+}
+
+/* Layout helpers */
+.container {
+  width: min(1100px, 92%);
+  margin: 0 auto;
+}
+
+.section {
+  padding: clamp(3rem, 6vw, 5rem) 0;
+}
+
+.section-header {
+  margin-bottom: 1.5rem;
+}
+
+.section-title {
+  font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+  letter-spacing: 0.3px;
+}
+
+.section-subtitle {
+  color: var(--muted);
+  margin-top: 0.5rem;
+}
+
+/* Header override additions (keeps existing component styles) */
+.header {
+  backdrop-filter: blur(8px);
+  background: rgba(10, 15, 35, 0.6);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-link {
+  position: relative;
+  font-weight: 500;
+}
+
+.nav-link.active::after,
+.nav-link:hover::after {
+  content: "";
+  position: absolute;
+  left: 12%;
+  right: 12%;
+  bottom: 8px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  border-radius: 999px;
+}
+
+/* Footer */
+.footer {
+  border-top: 1px solid var(--border);
+  background: rgba(10, 15, 35, 0.6);
+  backdrop-filter: blur(8px);
+}
+
+.footer .container {
+  padding: 1rem 0;
+  text-align: center;
+  color: var(--muted);
+}
+
+.footer a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+/* Cards */
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.card-body {
+  padding: 1.25rem 1.2rem;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  border: 1px solid var(--border);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(0, 0, 0, 0.1));
+  color: var(--text);
+  padding: .7rem 1rem;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: transform .15s ease, border-color .2s ease, background .2s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+.btn-primary {
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  color: #0b1020;
+  border: none;
+}
+
+.btn-ghost {
+  background: transparent;
+}
+
+/* Grid */
+.grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.grid-3 {
+  grid-template-columns: repeat(1, 1fr);
+}
+
+@media (min-width: 720px) {
+  .grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Hero */
+.hero {
+  padding: clamp(3rem, 7vw, 6rem) 0;
+}
+
+.hero-inner {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+@media (max-width: 900px) {
+  .hero-inner {
+    grid-template-columns: 1fr;
+  }
+}
+
+.hero h1 {
+  font-size: clamp(2.2rem, 5vw, 3rem);
+  line-height: 1.2;
+  letter-spacing: .3px;
+}
+
+.hero p {
+  color: var(--muted);
+  margin: 1rem 0 1.25rem;
+}
+
+.hero-actions {
+  display: flex;
+  gap: .75rem;
+  flex-wrap: wrap;
+}
+
+/* Project card */
+.project-card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  display: block;
+  border-bottom: 1px solid var(--border);
+}
+
+.project-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--muted);
+  font-size: .9rem;
+  margin-top: .25rem;
+}
+
+.tag {
+  padding: .25rem .55rem;
+  border-radius: 999px;
+  background: rgba(110, 193, 255, 0.15);
+  color: var(--primary);
+  font-weight: 600;
+  font-size: .8rem;
+  border: 1px solid rgba(110, 193, 255, 0.25);
+}
+
+/* Utilities */
+.muted {
+  color: var(--muted);
+}
+
+.pill {
+  border-radius: 999px;
+  padding: .25rem .6rem;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.03);
+  display: inline-block;
+  transition: transform .15s ease, border-color .2s ease, background .2s ease;
+}
+
+.pill:hover {
+  transform: translateY(-1px);
+  border-color: rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* Row of pills that wraps nicely */
+.pill-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
 }

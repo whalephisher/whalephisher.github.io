@@ -1,57 +1,56 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import './Home.css';
 
 const Home = () => {
-  const [bannerText, setBannerText] = useState('Top Secret//SCI');
-
-  useEffect(() => {
-    document.title = "Home";
-
-    const texts = ['Top Secret//SCI', '54 6F 70 20 53 65 63 72 65 74 2F 2F 53 43 49', 'GO BIG OR GO HOME', '47 4F 20 42 49 47 20 4F 52 20 47 4F 20 48 4F 4D 45'];
-    let index = 0;
-
-    const intervalId = setInterval(() => {
-      index = (index + 1) % texts.length;
-      setBannerText(texts[index]);
-    }, 10000); // Change text every 10 seconds
-
-    return () => clearInterval(intervalId);
-
-  }, []);
+  // Page title remains simple; hero copy reflects primary Data Engineering focus.
 
   return (
-    <div className="home-container">
-      <div className="top-secret-banner">{bannerText}</div>
-      <h1 className="bounce">
-        <span style={{ '--index': 1 }}>W</span>
-        <span style={{ '--index': 2 }}>h</span>
-        <span style={{ '--index': 3 }}>a</span>
-        <span style={{ '--index': 4 }}>l</span>
-        <span style={{ '--index': 5 }}>e</span>
-        <span style={{ '--index': 6 }}>p</span>
-        <span style={{ '--index': 7 }}>h</span>
-        <span style={{ '--index': 8 }}>i</span>
-        <span style={{ '--index': 9 }}>s</span>
-        <span style={{ '--index': 10 }}>h</span>
-        <span style={{ '--index': 11 }}>e</span>
-        <span style={{ '--index': 12 }}>r</span>
-      </h1>
-      <h2 className="gabriel-liau">
-        <span style={{ '--index': 1 }}>G</span>
-        <span style={{ '--index': 2 }}>a</span>
-        <span style={{ '--index': 3 }}>b</span>
-        <span style={{ '--index': 4 }}>r</span>
-        <span style={{ '--index': 5 }}>i</span>
-        <span style={{ '--index': 6 }}>e</span>
-        <span style={{ '--index': 7 }}>l</span>
-        <span style={{ '--index': 8 }}>&nbsp;</span>
-        <span style={{ '--index': 9 }}>L</span>
-        <span style={{ '--index': 10 }}>i</span>
-        <span style={{ '--index': 11 }}>a</span>
-        <span style={{ '--index': 12 }}>u</span>
-      </h2>
+    <div className="home">
+      <section className="section hero">
+        <div className="container hero-inner">
+          <div>
+            <h1>Gabriel Liau</h1>
+            <p className="muted" style={{ marginTop: '.35rem' }}>
+              Data Engineer | Army Veteran | Software Development | Data Analytics | Cybersecurity Expertise
+            </p>
+            <div className="hero-actions">
+              <a className="btn btn-primary" href="#/projects">View Projects</a>
+              <a className="btn btn-ghost" href="#/about">About Me</a>
+              <a className="btn" href="#/contact">Get in Touch</a>
+            </div>
+          </div>
+          <div>
+            <div className="card">
+              <div className="card-body">
+                <div className="pill-row">
+                  <div className="pill">📊 Data Engineering</div>
+                  <div className="pill">🐍 Python</div>
+                  <div className="pill">🧮 SQL</div>
+                  <div className="pill">🔁 ETL / ELT</div>
+                  <div className="pill">🧱 Data Modeling</div>
+                  <div className="pill">🔗 APIs</div>
+                  <div className="pill">⚛️ React.js</div>
+                  <div className="pill">📈 Analytics</div>
+                  <div className="pill">☁️ Cloud (AWS/GCP)</div>
+                  <div className="pill">🚀 CI/CD</div>
+                  <div className="pill">🐳 Docker</div>
+                  <div className="pill">🔐 Cybersecurity</div>
+                  <div className="pill">🧰 Backend</div>
+                  <div className="pill">🧪 Testing</div>
+                  <div className="pill">📦 Data Warehousing</div>
+                  <div className="pill">🗂️ Orchestration</div>
+                  <div className="pill">🕵️ Observability</div>
+                </div>
+                <p className="muted" style={{ marginTop: '1rem' }}>
+                  Focused on reliability, observability, and maintainable models—with a secure-by-default mindset.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
-}
+};
 
 export default Home;
