@@ -88,12 +88,13 @@ body {
 .nav-link:hover::after {
   content: "";
   position: absolute;
-  left: 12%;
-  right: 12%;
-  bottom: 8px;
-  height: 2px;
+  left: 18%;
+  right: 18%;
+  bottom: 10px;
+  height: 3px;
   background: linear-gradient(90deg, var(--primary), var(--accent));
   border-radius: 999px;
+  box-shadow: 0 2px 8px rgba(59,163,255,0.25);
 }
 
 /* Footer */
@@ -274,7 +275,7 @@ body {
 
 .pill:hover {
   transform: translateY(-1px);
-  border-color: rgba(0,0,0,0.14);
-  background: rgba(255,255,255,0.9);
-  box-shadow: 0 6px 20px rgba(17,24,39,0.08);
+  border-color: rgba(0, 0, 0, 0.14);
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 6px 20px rgba(17, 24, 39, 0.08);
 }
