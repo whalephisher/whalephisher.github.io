@@ -2,3 +2,13 @@
 .home {
     min-height: 60vh;
 }
+
+.avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 16px;
+    object-fit: cover;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    background: rgba(255,255,255,0.02);
+}

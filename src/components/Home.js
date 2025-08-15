@@ -22,6 +22,12 @@ const Home = () => {
           <div>
             <div className="card">
               <div className="card-body">
+                <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', marginBottom: '0.75rem' }}>
+                  <img src={process.env.PUBLIC_URL + '/profile.png'} alt="Profile" className="avatar" />
+                  <div className="muted" style={{ fontSize: '.95rem' }}>
+                    Hi, I’m Gabriel — building data platforms and practical software.
+                  </div>
+                </div>
                 <div className="pill-row">
                   <div className="pill">📊 Data Engineering</div>
                   <div className="pill">🐍 Python</div>
