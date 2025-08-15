@@ -6,17 +6,18 @@
 }
 
 :root {
-  --bg: #0b1020;
-  --bg-soft: #0f1733;
-  --text: #e6e8f0;
-  --muted: #aab1c6;
-  --primary: #6ec1ff;
-  --primary-600: #3ba3ff;
+  /* Light theme tokens */
+  --bg: #f7f9fc;
+  --bg-soft: #ffffff;
+  --text: #1b2430;
+  --muted: #5b6b7a;
+  --primary: #3ba3ff;
+  --primary-600: #1e90ff;
   --accent: #b794f6;
-  --card: #121931;
-  --border: rgba(255, 255, 255, 0.08);
+  --card: rgba(255, 255, 255, 0.6);
+  --border: rgba(0, 0, 0, 0.08);
   --radius: 14px;
-  --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  --shadow: 0 12px 28px rgba(17, 24, 39, 0.12);
 }
 
 html,
@@ -27,8 +28,8 @@ body,
 
 body {
   font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
-  background: radial-gradient(1200px 600px at 80% -10%, rgba(110, 193, 255, 0.12), transparent),
-    radial-gradient(800px 500px at 0% 100%, rgba(183, 148, 246, 0.10), transparent),
+  background: radial-gradient(1200px 600px at 80% -10%, rgba(59, 163, 255, 0.20), transparent),
+    radial-gradient(900px 600px at 0% 100%, rgba(183, 148, 246, 0.18), transparent),
     var(--bg);
   /* Prevent gradient layers from repeating/tiling on long pages */
   background-repeat: no-repeat;
@@ -71,10 +72,10 @@ body {
   margin-top: 0.5rem;
 }
 
-/* Header override additions (keeps existing component styles) */
+/* Header */
 .header {
-  backdrop-filter: blur(8px);
-  background: rgba(10, 15, 35, 0.6);
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.6);
   border-bottom: 1px solid var(--border);
 }
 
@@ -98,8 +99,8 @@ body {
 /* Footer */
 .footer {
   border-top: 1px solid var(--border);
-  background: rgba(10, 15, 35, 0.6);
-  backdrop-filter: blur(8px);
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
 }
 
 .footer .container {
@@ -120,6 +121,7 @@ body {
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   overflow: hidden;
+  backdrop-filter: blur(14px);
 }
 
 .card-body {
@@ -132,7 +134,7 @@ body {
   align-items: center;
   gap: .5rem;
   border: 1px solid var(--border);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(0, 0, 0, 0.1));
+  background: rgba(255, 255, 255, 0.7);
   color: var(--text);
   padding: .7rem 1rem;
   border-radius: 12px;
@@ -142,12 +144,12 @@ body {
 
 .btn:hover {
   transform: translateY(-2px);
-  border-color: rgba(255, 255, 255, 0.18);
+  border-color: rgba(0, 0, 0, 0.14);
 }
 
 .btn-primary {
   background: linear-gradient(90deg, var(--primary), var(--accent));
-  color: #0b1020;
+  color: #ffffff;
   border: none;
 }
 
@@ -233,11 +235,11 @@ body {
 .tag {
   padding: .25rem .55rem;
   border-radius: 999px;
-  background: rgba(110, 193, 255, 0.15);
+  background: rgba(59, 163, 255, 0.12);
   color: var(--primary);
   font-weight: 600;
   font-size: .8rem;
-  border: 1px solid rgba(110, 193, 255, 0.25);
+  border: 1px solid rgba(59, 163, 255, 0.25);
 }
 
 /* Utilities */
@@ -261,8 +263,18 @@ body {
 }
 
 /* Row of pills that wraps nicely */
-.pill-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: .5rem;
+.pill {
+  border-radius: 999px;
+  padding: .25rem .6rem;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.7);
+  display: inline-block;
+  transition: transform .15s ease, border-color .2s ease, background .2s ease, box-shadow .2s ease;
+}
+
+.pill:hover {
+  transform: translateY(-1px);
+  border-color: rgba(0,0,0,0.14);
+  background: rgba(255,255,255,0.9);
+  box-shadow: 0 6px 20px rgba(17,24,39,0.08);
 }
