@@ -10,9 +10,9 @@ const Home = () => {
         <div className="container hero-inner">
           <div>
             <div className="avatar-wrap">
-              <img src={process.env.PUBLIC_URL + '/profile.png'} alt="Gabriel Liau" className="avatar" />
+              <img src={process.env.PUBLIC_URL + '/profile.png'} alt="Gabriel Liau" className="avatar float" />
             </div>
-            <h1>Gabriel Liau</h1>
+            <h1 className="gradient-text">Gabriel Liau</h1>
             <p className="muted" style={{ marginTop: '.35rem' }}>
               Data Engineer | Army Veteran | Software Development | Data Analytics | Cybersecurity Expertise
             </p>
