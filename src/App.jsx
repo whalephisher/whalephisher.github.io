@@ -7,6 +7,7 @@ import Footer from "./components/layout/Footer";
 import ParticleSystem from "./components/effects/ParticleSystem";
 import "./styles/global.css";
 
+// Main App component
 function App() {
   return (
     <div className="App">
