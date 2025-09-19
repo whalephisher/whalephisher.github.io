@@ -11,13 +11,18 @@ const About = () => {
   const [activeTab, setActiveTab] = useState("experience");
   const [profileRef, profileVisible] = useScrollAnimation({ threshold: 0.3 });
 
-  // Typewriter state
+  // Typewriter state for the main heading
   const typewriterRef = useRef(null);
   const [isTypewriterVisible, setIsTypewriterVisible] = useState(false);
   const [displayText, setDisplayText] = useState("");
   const [showCursor, setShowCursor] = useState(false);
 
-  // Intersection observer for typewriter - same pattern as timeline
+  // Separate animation for the description that fades in after typewriter
+  const [descriptionRef, descriptionVisible] = useScrollAnimation({
+    threshold: 0.3,
+  });
+
+  // Intersection observer for typewriter - triggers for heading
   useEffect(() => {
     const element = typewriterRef.current;
     if (!element) return;
@@ -45,13 +50,13 @@ const About = () => {
     return () => observer.unobserve(element);
   }, []);
 
-  // Typewriter effect when visible
+  // Typewriter effect for "Hi, I'm Gabriel Liau" when visible
   useEffect(() => {
-    if (!isTypewriterVisible || !profileData.typewriterText) return;
+    if (!isTypewriterVisible) return;
 
     let timeoutId;
     let currentIndex = 0;
-    const text = profileData.typewriterText;
+    const text = `Hi, I'm ${profileData.name}.`;
 
     // Reset
     setDisplayText("");
@@ -61,7 +66,7 @@ const About = () => {
       if (currentIndex < text.length) {
         setDisplayText(text.slice(0, currentIndex + 1));
         currentIndex++;
-        timeoutId = setTimeout(typeNextChar, 25); // Fast typing
+        timeoutId = setTimeout(typeNextChar, 50); // Slightly slower for main heading
       } else {
         // Keep cursor for a bit then hide
         timeoutId = setTimeout(() => setShowCursor(false), 1000);
@@ -111,10 +116,17 @@ const About = () => {
           className="profile-img"
         />
         <div className="profile-intro">
-          <h3>Hi, I'm {profileData.name}.</h3>
-          <p className="about-typewriter" ref={typewriterRef}>
+          <h3 className="about-typewriter" ref={typewriterRef}>
             {displayText}
             {showCursor && <span className="caret">|</span>}
+          </h3>
+          <p
+            ref={descriptionRef}
+            className={`about-description animate-fade-in-up ${
+              descriptionVisible ? "visible" : ""
+            }`}
+          >
+            {profileData.typewriterText}
           </p>
         </div>
       </div>

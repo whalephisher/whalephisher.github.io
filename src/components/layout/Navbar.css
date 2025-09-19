@@ -359,6 +359,32 @@
   }
 
   .floating-logo {
+    position: static;
+    background: transparent;
+    backdrop-filter: none;
+    border: none;
+    box-shadow: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .logo-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .logo-whale {
+    width: 24px;
+    height: 24px;
+  }
+
+  .logo-text {
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+
+  .logo-indicator {
     display: none;
   }
 
