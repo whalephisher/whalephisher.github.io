@@ -27,7 +27,7 @@
     position: absolute;
     border-radius: 50%;
     opacity: 0.1;
-    filter: blur(1px);
+    filter: blur(2px);
     animation: float 6s ease-in-out infinite;
 }
 

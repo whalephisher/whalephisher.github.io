@@ -2,17 +2,17 @@
 
 export const profileData = {
     name: "Gabriel Liau",
-    title: "Creative Developer & Designer",
-    description: "Building immersive digital experiences with code, color, and motion.",
+    title: "Data Engineer & Developer",
+    description: "I build stuff with code and data.",
     profileImage: "/profile.png",
-    typewriterText: "Creative technologist, designer, and builder. I blend code, color, and motion to craft immersive digital experiences."
+    typewriterText: "Data engineer and developer who likes solving problems with code. I spent some time in the military doing cyber stuff, and now I build data pipelines and web apps. I'm into making things that actually work and help people get things done."
 };
 
 export const navigationData = {
     logo: "Whalephisher",
     links: [
-        { href: "#work", label: "Work" },
-        { href: "#about", label: "About" }
+        { href: "#about", label: "About" },
+        { href: "#work", label: "Work" }
     ],
     socialLinks: [
         { href: "https://www.youtube.com/@HeadbandTrekker", icon: "/youtube.svg", alt: "YouTube" },

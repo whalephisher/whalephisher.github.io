@@ -27,11 +27,11 @@ const Hero = () => {
 
       const bounds = {
         left: 0,
-        top: 80, // Account for navbar height
+        top: 0, // No navbar offset needed with floating design
         right: hero.offsetWidth,
         bottom: hero.offsetHeight,
         width: hero.offsetWidth,
-        height: hero.offsetHeight - 80,
+        height: hero.offsetHeight,
       };
 
       const cw = circle.offsetWidth;
@@ -60,11 +60,11 @@ const Hero = () => {
     function animateCircles() {
       const bounds = {
         left: 0,
-        top: 80,
+        top: 0,
         right: hero.offsetWidth,
         bottom: hero.offsetHeight,
         width: hero.offsetWidth,
-        height: hero.offsetHeight - 80,
+        height: hero.offsetHeight,
       };
 
       circleStates.forEach((state) => {
