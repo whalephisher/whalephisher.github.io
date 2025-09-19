@@ -1,14 +1,44 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { experienceData } from "../data/portfolioData";
 import "./Timeline.css";
 
 const Timeline = () => {
   const timelineRef = useRef(null);
+  const [visibleItems, setVisibleItems] = useState(new Set());
 
   useEffect(() => {
     const items = timelineRef.current?.querySelectorAll(".timeline-item");
     const line = timelineRef.current?.querySelector(".timeline-line");
     if (!items || !line) return;
+
+    // Intersection Observer for scroll-triggered animations
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const index = parseInt(entry.target.dataset.index);
+          if (entry.isIntersecting) {
+            setVisibleItems(prev => new Set([...prev, index]));
+          } else {
+            // Remove from visible items when out of view for re-animation
+            setVisibleItems(prev => {
+              const newSet = new Set(prev);
+              newSet.delete(index);
+              return newSet;
+            });
+          }
+        });
+      },
+      { 
+        threshold: 0.3,
+        rootMargin: '0px 0px -20% 0px'
+      }
+    );
+
+    // Observe all timeline items
+    items.forEach((item, index) => {
+      item.dataset.index = index;
+      observer.observe(item);
+    });
 
     // Animate timeline line drawing
     line.style.transform = "scaleY(0)";
@@ -20,22 +50,31 @@ const Timeline = () => {
       line.style.transform = "scaleY(1)";
     }, 200);
 
-    // Animate timeline items with slide-in from left/right alternating
-    items.forEach((item, i) => {
-      const isEven = i % 2 === 0;
-      item.style.opacity = "0";
-      item.style.transform = `translateX(${
-        isEven ? "-50px" : "50px"
-      }) scale(0.8)`;
-      item.style.transition =
-        "all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
 
-      setTimeout(() => {
+  useEffect(() => {
+    const items = timelineRef.current?.querySelectorAll(".timeline-item");
+    if (!items) return;
+
+    // Animate visible items
+    items.forEach((item, i) => {
+      const isVisible = visibleItems.has(i);
+      const isEven = i % 2 === 0;
+      
+      if (isVisible) {
         item.style.opacity = "1";
         item.style.transform = "translateX(0) scale(1)";
-      }, 400 + 120 * i);
+        item.style.transition = "all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
+      } else {
+        item.style.opacity = "0";
+        item.style.transform = `translateX(${isEven ? '-80px' : '80px'}) scale(0.8)`;
+        item.style.transition = "all 0.4s ease-out";
+      }
     });
-  }, []);
+  }, [visibleItems]);
 
   return (
     <div className="timeline-container" ref={timelineRef}>
