@@ -16,7 +16,13 @@ const Navbar = () => {
 
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768);
+      const newIsMobile = window.innerWidth <= 768;
+      setIsMobile(newIsMobile);
+      
+      // Reset showStickyNav when switching to desktop
+      if (!newIsMobile) {
+        setShowStickyNav(true);
+      }
     };
 
     checkMobile();
@@ -79,7 +85,9 @@ const Navbar = () => {
   return (
     <>
       {/* Desktop Logo - Fixed Left Position */}
-      <div className={`floating-logo ${isScrolled ? "scrolled" : ""}`}>
+      <div className={`floating-logo ${isScrolled ? "scrolled" : ""} ${
+        isMobile && !showStickyNav ? "hidden" : ""
+      }`}>
         <div className="logo-container">
           <img src={whaleImage} alt="Whale" className="logo-whale" />
           <span className="logo-text">{logo}</span>
