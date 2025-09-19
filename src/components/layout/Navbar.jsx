@@ -18,7 +18,7 @@ const Navbar = () => {
     const checkMobile = () => {
       const newIsMobile = window.innerWidth <= 768;
       setIsMobile(newIsMobile);
-      
+
       // Reset showStickyNav when switching to desktop
       if (!newIsMobile) {
         setShowStickyNav(true);
@@ -74,8 +74,13 @@ const Navbar = () => {
   const handleNavClick = (e, href) => {
     e.preventDefault();
     const elementId = href.replace("#", "");
-    scrollToElement(elementId, 80);
+    scrollToElement(elementId, 0);
     setIsMenuOpen(false);
+  };
+
+  const handleLogoClick = (e) => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const toggleMenu = () => {
@@ -85,12 +90,18 @@ const Navbar = () => {
   return (
     <>
       {/* Desktop Logo - Fixed Left Position */}
-      <div className={`floating-logo ${isScrolled ? "scrolled" : ""} ${
-        isMobile && !showStickyNav ? "hidden" : ""
-      }`}>
-        <div className="logo-container">
-          <img src={whaleImage} alt="Whale" className="logo-whale" />
-          <span className="logo-text">{logo}</span>
+      <div
+        className={`floating-logo ${isScrolled ? "scrolled" : ""} ${
+          isMobile && !showStickyNav ? "hidden" : ""
+        }`}
+      >
+        <div
+          className="chip brand-chip logo-container"
+          onClick={handleLogoClick}
+          style={{ cursor: "pointer" }}
+        >
+          <img src={whaleImage} alt="Whale" className="logo-whale brand-icon" />
+          <span className="chip-text logo-text">{logo}</span>
         </div>
       </div>
 
@@ -108,12 +119,12 @@ const Navbar = () => {
                 <a
                   href={link.href}
                   onClick={(e) => handleNavClick(e, link.href)}
-                  className={`nav-pill ${
+                  className={`chip nav-chip ${
                     activeSection === link.href.replace("#", "") ? "active" : ""
                   }`}
                 >
-                  <span className="nav-pill-text">{link.label}</span>
-                  <div className="nav-pill-indicator"></div>
+                  <span className="chip-text nav-pill-text">{link.label}</span>
+                  <div className="chip-indicator nav-pill-indicator"></div>
                 </a>
               </RippleEffect>
             ))}

@@ -1,6 +1,91 @@
-/* Modern Floating Navbar */
+/* ============================= */
+/* Chip System (clean rebuild)   */
+/* ============================= */
 
-/* ===== FLOATING LOGO (ALWAYS LEFT) ===== */
+:root {
+  /* Chip sizing */
+  --chip-font-family: ui-sans-serif, -apple-system, Segoe UI, Roboto, Inter, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+  --chip-font-size: 0.9rem;
+  /* desktop base */
+  --chip-line-height: 1.2;
+  --chip-padding-y: 0.6rem;
+  --chip-padding-x: 1rem;
+  --chip-radius: 25px;
+  --chip-min-height: 2.5rem;
+  --chip-gap: 0.375rem;
+
+  /* Chip visuals */
+  --chip-bg: rgba(255, 255, 255, 0.1);
+  --chip-border: 1px solid rgba(255, 255, 255, 0.2);
+  --chip-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  --chip-color: rgba(255, 255, 255, 0.85);
+  --chip-accent: #3cbbb1;
+}
+
+/* Base chip shared by logo and pills */
+.chip {
+  display: flex;
+  align-items: center;
+  gap: var(--chip-gap);
+  padding: var(--chip-padding-y) var(--chip-padding-x);
+  border-radius: var(--chip-radius);
+  background: var(--chip-bg);
+  backdrop-filter: blur(20px);
+  border: var(--chip-border);
+  box-shadow: var(--chip-shadow);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  box-sizing: border-box;
+  min-height: var(--chip-min-height);
+  color: var(--chip-color);
+  font: 500 var(--chip-font-size)/var(--chip-line-height) var(--chip-font-family);
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.chip:hover {
+  background: rgba(60, 187, 177, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(60, 187, 177, 0.35);
+}
+
+.chip .chip-text,
+.nav-pill-text {
+  font: inherit;
+  letter-spacing: 0;
+  color: inherit;
+  line-height: inherit;
+}
+
+/* Brand (logo) chip */
+.brand-chip {
+  color: var(--chip-accent);
+}
+
+.logo-container {
+  gap: var(--chip-gap);
+  color: var(--chip-accent);
+}
+
+.logo-whale {
+  height: 1em;
+  width: auto;
+  object-fit: contain;
+  filter: brightness(0) saturate(100%) invert(71%) sepia(56%) saturate(1086%) hue-rotate(138deg) brightness(95%) contrast(86%);
+  transition: transform 0.25s ease;
+  flex-shrink: 0;
+}
+
+.logo-text {
+  font: inherit;
+  letter-spacing: 0;
+  color: inherit;
+}
+
+.brand-chip:hover .logo-whale {
+  transform: scale(1.05) rotate(5deg);
+}
+
+/* Positions */
 .floating-logo {
   position: fixed;
   top: 1.875rem;
@@ -19,50 +104,6 @@
   opacity: 0;
 }
 
-.logo-container {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 25px;
-  padding: 0.6rem 1rem; /* EXACTLY SAME as nav pills */
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-  transition: all 0.3s ease;
-  /* Debug: Force same height as nav pills */
-  min-height: 2.5rem;
-  box-sizing: border-box;
-}
-
-.logo-whale {
-  width: 0.9rem; /* Slightly smaller */
-  height: 0.9rem;
-  object-fit: contain;
-  filter: brightness(0) saturate(100%) invert(71%) sepia(56%) saturate(1086%) hue-rotate(138deg) brightness(95%) contrast(86%);
-  transition: all 0.3s ease;
-  flex-shrink: 0;
-}
-
-.logo-text {
-  font-size: 0.85rem; /* EXACTLY SAME as nav pills */
-  font-weight: 500; /* EXACTLY SAME as nav pills */
-  color: #3cbbb1;
-  letter-spacing: -0.5px;
-  white-space: nowrap;
-}
-
-.logo-container:hover {
-  background: rgba(60, 187, 177, 0.2);
-  transform: translateY(-2px);
-  box-shadow: 0 12px 40px rgba(60, 187, 177, 0.4);
-}
-
-.logo-container:hover .logo-whale {
-  transform: scale(1.1) rotate(5deg);
-}
-
-/* ===== NAVIGATION (ALWAYS RIGHT) ===== */
 .modern-navbar {
   position: fixed;
   top: 1.875rem;
@@ -87,52 +128,30 @@
   gap: 1.25rem;
 }
 
+/* Group container: unwrapped (no bubble) */
 .nav-pills {
   display: flex;
   gap: 0.5rem;
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 25px;
-  padding: 0.5rem;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
-.nav-pill {
-  display: flex;
-  align-items: center;
-  padding: 0.6rem 1rem; /* EXACTLY SAME as logo */
-  border-radius: 25px;
-  text-decoration: none;
-  color: rgba(255, 255, 255, 0.8);
-  font-weight: 500;
-  font-size: 0.85rem; /* EXACTLY SAME as logo */
-  transition: all 0.3s ease;
+/* Individual nav chip */
+.nav-chip {
   position: relative;
   overflow: hidden;
-  min-height: 2.5rem; /* SAME as logo */
-  box-sizing: border-box;
-  white-space: nowrap;
 }
 
-.nav-pill:hover {
-  background: rgba(60, 187, 177, 0.2);
-  color: #3cbbb1;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(60, 187, 177, 0.3);
+.nav-chip:hover {
+  color: var(--chip-accent);
 }
 
-.nav-pill:active {
-  transform: translateY(0);
+.nav-pill-wrapper {
+  border-radius: var(--chip-radius);
+  overflow: hidden;
 }
 
-/* Nav pill text and indicator styles */
-.nav-pill-text {
-  position: relative;
-  z-index: 2;
-}
-
-.nav-pill-indicator {
+/* Active indicator */
+.nav-pill-indicator,
+.chip-indicator {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -143,18 +162,14 @@
   transition: transform 0.3s ease;
 }
 
-.nav-pill.active {
+.nav-chip.active {
   background: rgba(60, 187, 177, 0.2);
-  color: #3cbbb1;
+  color: var(--chip-accent);
 }
 
-.nav-pill.active .nav-pill-indicator {
+.nav-chip.active .chip-indicator,
+.nav-chip.active .nav-pill-indicator {
   transform: scaleX(1);
-}
-
-.nav-pill-wrapper {
-  border-radius: 25px;
-  overflow: hidden;
 }
 
 /* Contact Button */
@@ -187,14 +202,14 @@
   box-shadow: 0 12px 30px rgba(60, 187, 177, 0.5);
 }
 
-/* Social dock styles */
+/* Social dock (unchanged) */
 .social-dock {
   position: relative;
 }
 
 .dock-toggle {
-  width: 40px; /* Reduced from 50px */
-  height: 40px; /* Reduced from 50px */
+  width: 40px;
+  height: 40px;
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -220,7 +235,7 @@
 }
 
 .dock-icon span {
-  width: 14px; /* Reduced from 16px */
+  width: 14px;
   height: 2px;
   background: #3cbbb1;
   border-radius: 1px;
@@ -269,8 +284,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 36px; /* Reduced from 44px */
-  height: 36px; /* Reduced from 44px */
+  width: 36px;
+  height: 36px;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 10px;
   text-decoration: none;
@@ -289,8 +304,8 @@
 }
 
 .social-item img {
-  width: 18px; /* Reduced from 20px */
-  height: 18px; /* Reduced from 20px */
+  width: 18px;
+  height: 18px;
   filter: brightness(1.2);
 }
 
@@ -323,9 +338,17 @@
     transform: translateY(0);
   }
 }
+
 /* ===== MOBILE RESPONSIVE ===== */
 @media (max-width: 768px) {
-  /* Logo adjustments for mobile - MATCH nav pills exactly */
+  :root {
+    --chip-font-size: 0.7rem;
+    --chip-padding-y: 0.4rem;
+    --chip-padding-x: 0.6rem;
+    --chip-gap: 0.25rem;
+    --chip-min-height: 2rem;
+  }
+
   .floating-logo {
     top: 1rem;
     left: 1rem;
@@ -336,22 +359,6 @@
     left: 0.75rem;
   }
 
-  .logo-container {
-    padding: 0.4rem 0.6rem; /* EXACTLY SAME as nav pills */
-    min-height: 2rem; /* Smaller mobile height */
-  }
-
-  .logo-whale {
-    width: 0.7rem; /* Smaller mobile size */
-    height: 0.7rem;
-  }
-
-  .logo-text {
-    font-size: 0.7rem; /* EXACTLY SAME as nav pills */
-    font-weight: 500; /* EXACTLY SAME as nav pills */
-  }
-
-  /* Navigation adjustments for mobile */
   .modern-navbar {
     top: 1rem;
     right: 1rem;
@@ -362,15 +369,8 @@
     right: 0.75rem;
   }
 
-  .nav-pill {
-    padding: 0.4rem 0.6rem; /* EXACTLY SAME as logo */
-    font-size: 0.7rem; /* EXACTLY SAME as logo */
-    min-height: 2rem; /* SAME as logo mobile height */
-  }
-
   .nav-pills {
     gap: 0.25rem;
-    padding: 0.25rem;
   }
 
   .nav-container {
@@ -386,8 +386,7 @@
     width: 12px;
   }
 
-  /* Hide logo when navbar is hidden (on About section) */
-  .modern-navbar.hidden ~ .floating-logo,
+  .modern-navbar.hidden~.floating-logo,
   .floating-logo.hidden {
     transform: translateY(-100%);
     opacity: 0;
