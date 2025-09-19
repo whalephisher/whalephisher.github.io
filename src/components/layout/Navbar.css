@@ -1,5 +1,34 @@
 /* Modern Floating Navbar */
 
+/* CSS Custom Properties for consistent sizing */
+:root {
+  --nav-pill-padding-y: 10px;
+  --nav-pill-padding-x: 16px;
+  --nav-pill-font-size: 0.85rem;
+  --nav-pill-font-weight: 500;
+  --nav-pill-border-radius: 25px;
+  --nav-pill-gap: 6px;
+}
+
+/* Responsive sizing */
+@media (min-width: 768px) {
+  :root {
+    --nav-pill-padding-y: 12px;
+    --nav-pill-padding-x: 20px;
+    --nav-pill-font-size: 0.9rem;
+    --nav-pill-gap: 8px;
+  }
+}
+
+@media (min-width: 1200px) {
+  :root {
+    --nav-pill-padding-y: 14px;
+    --nav-pill-padding-x: 24px;
+    --nav-pill-font-size: 1rem;
+    --nav-pill-gap: 10px;
+  }
+}
+
 /* Floating Logo */
 .floating-logo {
   position: fixed;
@@ -20,18 +49,18 @@
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 50px;
-  padding: 12px 20px; /* Match nav-pill padding exactly */
+  border-radius: var(--nav-pill-border-radius);
+  padding: var(--nav-pill-padding-y) var(--nav-pill-padding-x);
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--nav-pill-gap);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
   transition: all 0.3s ease;
-  height: auto; /* Let padding determine height */
+  min-height: 0; /* Allow natural height from padding */
 }
 
 .logo-whale {
-  width: 20px; /* Match nav pill icon size */
+  width: 20px;
   height: 20px;
   object-fit: contain;
   filter: brightness(0) saturate(100%) invert(71%) sepia(56%) saturate(1086%) hue-rotate(138deg) brightness(95%) contrast(86%);
@@ -39,8 +68,8 @@
 }
 
 .logo-text {
-  font-size: 0.9rem; /* Match nav pill font size */
-  font-weight: 500; /* Match nav pill font weight */
+  font-size: var(--nav-pill-font-size);
+  font-weight: var(--nav-pill-font-weight);
   color: #3cbbb1;
   letter-spacing: -0.5px;
 }
@@ -73,12 +102,12 @@
     padding: 12px 24px;
     gap: 8px;
   }
-  
+
   .logo-whale {
     width: 24px;
     height: 24px;
   }
-  
+
   .logo-text {
     font-size: 1.2rem;
   }
@@ -90,12 +119,12 @@
     padding: 14px 28px;
     gap: 10px;
   }
-  
+
   .logo-whale {
     width: 28px;
     height: 28px;
   }
-  
+
   .logo-text {
     font-size: 1.3rem;
   }
@@ -107,12 +136,12 @@
     padding: 16px 32px;
     gap: 12px;
   }
-  
+
   .logo-whale {
     width: 32px;
     height: 32px;
   }
-  
+
   .logo-text {
     font-size: 1.4rem;
   }
@@ -144,7 +173,8 @@
   display: flex;
   align-items: center;
   gap: 20px;
-  min-width: max-content; /* Prevent shrinking */
+  min-width: max-content;
+  /* Prevent shrinking */
 }
 
 /* Navigation Pills */
@@ -167,12 +197,12 @@
 .nav-pill {
   display: flex;
   align-items: center;
-  padding: 12px 20px;
-  border-radius: 25px;
+  padding: var(--nav-pill-padding-y) var(--nav-pill-padding-x);
+  border-radius: var(--nav-pill-border-radius);
   text-decoration: none;
   color: rgba(255, 255, 255, 0.8);
-  font-weight: 500;
-  font-size: 0.9rem;
+  font-weight: var(--nav-pill-font-weight);
+  font-size: var(--nav-pill-font-size);
   transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   position: relative;
   overflow: hidden;
@@ -421,18 +451,16 @@
     gap: 1rem;
   }
 
-  /* Mobile logo - responsive sizing for different mobile widths */
+  /* Mobile logo - uses same variables as nav pills */
   .mobile-logo {
     display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 0.75rem 1rem;
+    gap: var(--nav-pill-gap);
+    padding: var(--nav-pill-padding-y) var(--nav-pill-padding-x);
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
-    border-radius: 25px;
+    border-radius: var(--nav-pill-border-radius);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    height: 50px;
-    /* Same height as nav pills */
     box-sizing: border-box;
   }
 
@@ -443,8 +471,8 @@
   }
 
   .mobile-logo-text {
-    font-size: 1.1rem;
-    font-weight: 600;
+    font-size: var(--nav-pill-font-size);
+    font-weight: var(--nav-pill-font-weight);
     color: var(--accent-color);
     text-shadow: 0 0 10px rgba(26, 188, 156, 0.3);
   }
