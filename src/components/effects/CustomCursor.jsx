@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { useMousePosition } from "../hooks/useAnimations";
+import { useMousePosition } from "../../hooks/useAnimations";
 import "./CustomCursor.css";
 
 const CustomCursor = () => {

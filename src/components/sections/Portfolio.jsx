@@ -1,7 +1,7 @@
 import React from "react";
-import { portfolioData } from "../data/portfolioData";
-import { useScrollAnimation } from "../hooks/useAnimations";
-import { ImageLoader } from "./LoadingAnimation";
+import { portfolioData } from "../../data/portfolioData";
+import { useScrollAnimation } from "../../hooks/useAnimations";
+import { ImageLoader } from "../ui/LoadingAnimation";
 import "./Portfolio.css";
 
 const Portfolio = () => {

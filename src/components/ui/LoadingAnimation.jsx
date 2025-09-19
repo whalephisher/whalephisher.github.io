@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useScrollAnimation } from "../hooks/useAnimations";
+import { useScrollAnimation } from "../../hooks/useAnimations";
 import "./LoadingAnimation.css";
 
 const LoadingAnimation = ({
