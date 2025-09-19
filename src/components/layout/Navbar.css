@@ -1,47 +1,47 @@
 /* Modern Floating Navbar */
 
-/* CSS Custom Properties for consistent sizing */
+/* CSS Custom Properties for truly dynamic responsive sizing */
 :root {
-  --nav-pill-padding-y: 10px;
-  --nav-pill-padding-x: 16px;
+  --nav-pill-padding-y: 0.6rem;
+  --nav-pill-padding-x: 1.2rem;
   --nav-pill-font-size: 0.85rem;
   --nav-pill-font-weight: 500;
-  --nav-pill-border-radius: 25px;
-  --nav-pill-gap: 6px;
+  --nav-pill-border-radius: 1.5625rem; /* 25px equivalent but in rem */
+  --nav-pill-gap: 0.5rem;
 }
 
-/* Responsive sizing */
-@media (min-width: 768px) {
+/* Responsive sizing with truly dynamic units */
+@media (min-width: 48rem) { /* 768px */
   :root {
-    --nav-pill-padding-y: 12px;
-    --nav-pill-padding-x: 20px;
+    --nav-pill-padding-y: 0.75rem;
+    --nav-pill-padding-x: 1.25rem;
     --nav-pill-font-size: 0.9rem;
-    --nav-pill-gap: 8px;
+    --nav-pill-gap: 0.5rem;
   }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 75rem) { /* 1200px */
   :root {
-    --nav-pill-padding-y: 14px;
-    --nav-pill-padding-x: 24px;
+    --nav-pill-padding-y: 0.875rem;
+    --nav-pill-padding-x: 1.5rem;
     --nav-pill-font-size: 1rem;
-    --nav-pill-gap: 10px;
+    --nav-pill-gap: 0.625rem;
   }
 }
 
 /* Floating Logo */
 .floating-logo {
   position: fixed;
-  top: 30px;
-  left: 30px;
+  top: 1.875rem; /* 30px in rem */
+  left: 1.875rem; /* 30px in rem */
   z-index: 1000;
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   transform: scale(1);
 }
 
 .floating-logo.scrolled {
-  top: 20px;
-  left: 20px;
+  top: 1.25rem; /* 20px in rem */
+  left: 1.25rem; /* 20px in rem */
   transform: scale(0.9);
 }
 
@@ -60,8 +60,8 @@
 }
 
 .logo-whale {
-  width: 20px;
-  height: 20px;
+  width: 1.25rem; /* 20px in rem */
+  height: 1.25rem; /* 20px in rem */
   object-fit: contain;
   filter: brightness(0) saturate(100%) invert(71%) sepia(56%) saturate(1086%) hue-rotate(138deg) brightness(95%) contrast(86%);
   transition: all 0.3s ease;
@@ -158,23 +158,23 @@
 /* Modern Navbar */
 .modern-navbar {
   position: fixed;
-  top: 30px;
-  right: 30px;
+  top: 1.875rem; /* 30px in rem */
+  right: 1.875rem; /* 30px in rem */
   z-index: 1000;
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .modern-navbar.scrolled {
-  top: 20px;
-  right: 20px;
+  top: 1.25rem; /* 20px in rem */
+  right: 1.25rem; /* 20px in rem */
 }
 
 .nav-container {
   display: flex;
   align-items: center;
-  gap: 20px;
-  min-width: max-content;
-  /* Prevent shrinking */
+  gap: 1.25rem; /* 20px in rem */
+  width: max-content; /* Prevent shrinking */
+  margin-left: auto; /* Force right alignment */
 }
 
 /* Navigation Pills */
@@ -465,8 +465,8 @@
   }
 
   .mobile-logo-whale {
-    width: 20px;
-    height: 20px;
+    width: 1.25rem; /* 20px in rem */
+    height: 1.25rem; /* 20px in rem */
     filter: brightness(0) saturate(100%) invert(70%) sepia(89%) saturate(400%) hue-rotate(158deg) brightness(98%) contrast(86%);
   }
 
