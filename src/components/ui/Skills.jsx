@@ -11,7 +11,7 @@ const Skills = () => {
     const canvas = canvasRef.current;
     if (!tags || !canvas) return;
 
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext("2d");
     const particles = [];
 
     // Set canvas size
@@ -20,7 +20,7 @@ const Skills = () => {
       canvas.height = canvas.offsetHeight;
     };
     resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
+    window.addEventListener("resize", resizeCanvas);
 
     // Create particle system
     class Particle {
@@ -45,7 +45,7 @@ const Skills = () => {
       draw() {
         ctx.save();
         ctx.globalAlpha = this.life;
-        ctx.fillStyle = '#3cbbb1';
+        ctx.fillStyle = "#3cbbb1";
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         ctx.fill();
@@ -62,13 +62,13 @@ const Skills = () => {
           y: Math.random() * canvas.height,
           vx: (Math.random() - 0.5) * 0.5,
           vy: (Math.random() - 0.5) * 0.5,
-          size: Math.random() * 2 + 1
+          size: Math.random() * 2 + 1,
         });
       }
 
       const animateNetwork = () => {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        
+
         // Update and draw network particles
         networkParticles.forEach((particle, i) => {
           particle.x += particle.vx;
@@ -78,19 +78,21 @@ const Skills = () => {
           if (particle.y < 0 || particle.y > canvas.height) particle.vy *= -1;
 
           // Draw particle
-          ctx.fillStyle = 'rgba(60, 187, 177, 0.3)';
+          ctx.fillStyle = "rgba(60, 187, 177, 0.3)";
           ctx.beginPath();
           ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
           ctx.fill();
 
           // Draw connections
-          networkParticles.slice(i + 1).forEach(otherParticle => {
+          networkParticles.slice(i + 1).forEach((otherParticle) => {
             const dx = particle.x - otherParticle.x;
             const dy = particle.y - otherParticle.y;
             const distance = Math.sqrt(dx * dx + dy * dy);
 
             if (distance < 100) {
-              ctx.strokeStyle = `rgba(60, 187, 177, ${0.2 * (1 - distance / 100)})`;
+              ctx.strokeStyle = `rgba(60, 187, 177, ${
+                0.2 * (1 - distance / 100)
+              })`;
               ctx.lineWidth = 1;
               ctx.beginPath();
               ctx.moveTo(particle.x, particle.y);
@@ -124,7 +126,7 @@ const Skills = () => {
       tag.style.transition = "all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55)";
 
       // Add hover effect with particles
-      tag.addEventListener('mouseenter', (e) => {
+      tag.addEventListener("mouseenter", (e) => {
         const rect = e.target.getBoundingClientRect();
         const canvasRect = canvas.getBoundingClientRect();
         const x = rect.left + rect.width / 2 - canvasRect.left;
@@ -143,7 +145,7 @@ const Skills = () => {
     });
 
     return () => {
-      window.removeEventListener('resize', resizeCanvas);
+      window.removeEventListener("resize", resizeCanvas);
     };
   }, []);
 

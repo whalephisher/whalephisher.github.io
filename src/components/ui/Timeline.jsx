@@ -17,10 +17,10 @@ const Timeline = () => {
         entries.forEach((entry) => {
           const index = parseInt(entry.target.dataset.index);
           if (entry.isIntersecting) {
-            setVisibleItems(prev => new Set([...prev, index]));
+            setVisibleItems((prev) => new Set([...prev, index]));
           } else {
             // Remove from visible items when out of view for re-animation
-            setVisibleItems(prev => {
+            setVisibleItems((prev) => {
               const newSet = new Set(prev);
               newSet.delete(index);
               return newSet;
@@ -28,9 +28,9 @@ const Timeline = () => {
           }
         });
       },
-      { 
+      {
         threshold: 0.3,
-        rootMargin: '0px 0px -20% 0px'
+        rootMargin: "0px 0px -20% 0px",
       }
     );
 
@@ -63,14 +63,17 @@ const Timeline = () => {
     items.forEach((item, i) => {
       const isVisible = visibleItems.has(i);
       const isEven = i % 2 === 0;
-      
+
       if (isVisible) {
         item.style.opacity = "1";
         item.style.transform = "translateX(0) scale(1)";
-        item.style.transition = "all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
+        item.style.transition =
+          "all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
       } else {
         item.style.opacity = "0";
-        item.style.transform = `translateX(${isEven ? '-80px' : '80px'}) scale(0.8)`;
+        item.style.transform = `translateX(${
+          isEven ? "-80px" : "80px"
+        }) scale(0.8)`;
         item.style.transition = "all 0.4s ease-out";
       }
     });

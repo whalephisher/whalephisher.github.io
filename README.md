@@ -14,16 +14,19 @@ A modern, interactive portfolio website built with React and Vite, featuring adv
 ## 🎨 Visual Effects
 
 ### Floating Circles Animation
+
 - Physics-based floating circles with smooth motion
 - Subtle glow effect on blue circle with periodic pulsing
 - Rare shooting star effect on orange circle with diagonal light beams
 
 ### Typewriter Effects
+
 - Hero section typing animation with scroll-based reset
 - About section faster typing with intersection observer
 - Automatic restart when scrolling back into view
 
 ### Modern Navigation
+
 - Floating glassmorphism navbar with whale logo integration
 - Smooth scroll progress tracking
 - Responsive social dock with animated menu
@@ -40,7 +43,7 @@ src/
 │   │   ├── Navbar.css
 │   │   ├── Footer.jsx
 │   │   └── Footer.css
-│   ├── sections/            # Main page sections  
+│   ├── sections/            # Main page sections
 │   │   ├── About.jsx        # Profile and tabbed content
 │   │   ├── About.css
 │   │   ├── Portfolio.jsx    # Project showcase
@@ -85,36 +88,44 @@ src/
 ## 🎯 Component Organization
 
 ### Layout Components (`/layout/`)
+
 Core structural elements that define the page layout and navigation.
 
 ### Section Components (`/sections/`)
+
 Main content areas that represent different sections of the portfolio.
 
 ### UI Components (`/ui/`)
+
 Reusable interface elements that can be composed within sections.
 
 ### Effects Components (`/effects/`)
+
 Specialized components for animations, transitions, and visual effects.
 
 ## 🚀 Getting Started
 
 1. **Clone the repository**
+
 ```bash
 git clone https://github.com/whalephisher/whalephisher.github.io.git
 cd whalephisher.github.io
 ```
 
 2. **Install dependencies**
+
 ```bash
 npm install
 ```
 
 3. **Start development server**
+
 ```bash
 npm run dev
 ```
 
 4. **Build for production**
+
 ```bash
 npm run build
 ```
@@ -122,7 +133,9 @@ npm run build
 ## 🎨 Customization
 
 ### Updating Content
+
 All portfolio content is centralized in `src/data/portfolioData.js`. Update this file to modify:
+
 - Personal information and bio
 - Experience timeline
 - Skills and technologies
@@ -131,12 +144,15 @@ All portfolio content is centralized in `src/data/portfolioData.js`. Update this
 - Social links
 
 ### Styling
+
 - Global styles and CSS variables: `src/styles/global.css`
 - Component-specific styles: Located alongside each component
 - Color scheme: Teal-based palette with dark theme
 
 ### Animations
+
 Custom animation hooks in `src/hooks/useAnimations.js`:
+
 - `useScrollAnimation`: Intersection observer for scroll-triggered effects
 - `useTypewriter`: Typewriter text animation
 - `useScrollTypewriter`: Scroll-based typewriter with reset
@@ -160,6 +176,7 @@ Custom animation hooks in `src/hooks/useAnimations.js`:
 ## 🚀 Deployment
 
 The site is configured for GitHub Pages deployment:
+
 ```bash
 npm run build
 npm run deploy

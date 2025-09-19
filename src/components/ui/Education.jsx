@@ -20,11 +20,12 @@ const Education = () => {
         badge.style.opacity = "1";
         badge.style.transform = "scale(1) rotateY(0deg)";
         badge.style.filter = "grayscale(0%) brightness(1)";
-        badge.style.transition = "all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)";
-        
+        badge.style.transition =
+          "all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)";
+
         // Add to unlocked items
         setTimeout(() => {
-          setUnlockedItems(prev => new Set([...prev, i]));
+          setUnlockedItems((prev) => new Set([...prev, i]));
         }, 400);
       }, 120 * i);
     });
@@ -32,7 +33,8 @@ const Education = () => {
 
   const getEducationType = (item) => {
     if (item.includes("B.S.")) return "degree";
-    if (item.includes("Certificate") || item.includes("Professional")) return "certificate";
+    if (item.includes("Certificate") || item.includes("Professional"))
+      return "certificate";
     if (item.includes("CompTIA") || item.includes("ce")) return "certification";
     if (item.includes("Course") || item.includes("Academy")) return "course";
     return "achievement";
@@ -40,21 +42,31 @@ const Education = () => {
 
   const getEducationIcon = (type) => {
     switch (type) {
-      case "degree": return "🎓";
-      case "certificate": return "📜";
-      case "certification": return "🏆";
-      case "course": return "📚";
-      default: return "⭐";
+      case "degree":
+        return "🎓";
+      case "certificate":
+        return "📜";
+      case "certification":
+        return "🏆";
+      case "course":
+        return "📚";
+      default:
+        return "⭐";
     }
   };
 
   const getEducationColor = (type) => {
     switch (type) {
-      case "degree": return "#FFD700";
-      case "certificate": return "#3cbbb1";
-      case "certification": return "#FF6B6B";
-      case "course": return "#4ECDC4";
-      default: return "#95E1D3";
+      case "degree":
+        return "#FFD700";
+      case "certificate":
+        return "#3cbbb1";
+      case "certification":
+        return "#FF6B6B";
+      case "course":
+        return "#4ECDC4";
+      default:
+        return "#95E1D3";
     }
   };
 
@@ -66,12 +78,12 @@ const Education = () => {
           const icon = getEducationIcon(type);
           const color = getEducationColor(type);
           const isUnlocked = unlockedItems.has(index);
-          
+
           return (
-            <div 
-              key={index} 
-              className={`edu-item ${type} ${isUnlocked ? 'unlocked' : ''}`}
-              style={{ '--accent-color': color }}
+            <div
+              key={index}
+              className={`edu-item ${type} ${isUnlocked ? "unlocked" : ""}`}
+              style={{ "--accent-color": color }}
             >
               <div className="edu-icon">{icon}</div>
               <div className="edu-content">
@@ -85,7 +97,7 @@ const Education = () => {
           );
         })}
       </div>
-      
+
       <div className="education-stats">
         <div className="stat-item">
           <span className="stat-number">{unlockedItems.size}</span>
