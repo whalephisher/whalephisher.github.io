@@ -177,7 +177,7 @@ const Hero = () => {
         ></div>
         <div
           ref={(el) => (circlesRef.current[2] = el)}
-          className="parallax-circle circle-sm circle-pos-3 circle-orange"
+          className="parallax-circle circle-sm circle-pos-3 circle-orange circle-shooting-star"
         ></div>
       </div>
       <div className="hero-content">
