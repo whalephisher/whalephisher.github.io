@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import whaleImage from "../../assets/whale.png";
 import { navigationData } from "../../data/portfolioData";
 import { useSmoothScroll } from "../../hooks/useAnimations";
 import { RippleEffect } from "../effects/InteractiveEffects";
@@ -58,7 +59,7 @@ const Navbar = () => {
       {/* Floating Logo */}
       <div className={`floating-logo ${isScrolled ? "scrolled" : ""}`}>
         <div className="logo-container">
-          <img src="/whale.png" alt="Whale" className="logo-whale" />
+          <img src={whaleImage} alt="Whale" className="logo-whale" />
           <span className="logo-text">{logo}</span>
           <div className="logo-indicator"></div>
         </div>
