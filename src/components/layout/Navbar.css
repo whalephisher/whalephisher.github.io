@@ -21,33 +21,34 @@
   backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 50px;
-  padding: 12px 24px;
+  padding: 10px 20px; /* Smaller default for mobile-first */
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px; /* Smaller default gap */
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
   transition: all 0.3s ease;
 }
 
-/* Responsive logo sizing for desktop */
-@media (min-width: 1200px) {
-  .logo-container {
-    padding: 14px 28px;
-  }
-  
-  .logo-whale {
-    width: 28px;
-    height: 28px;
-  }
-  
-  .logo-text {
-    font-size: 1.3rem;
-  }
+.logo-whale {
+  width: 20px; /* Smaller default */
+  height: 20px;
+  object-fit: contain;
+  filter: brightness(0) saturate(100%) invert(71%) sepia(56%) saturate(1086%) hue-rotate(138deg) brightness(95%) contrast(86%);
+  transition: all 0.3s ease;
 }
 
-@media (min-width: 769px) and (max-width: 1199px) {
+.logo-text {
+  font-size: 1rem; /* Smaller default */
+  font-weight: 700;
+  color: #3cbbb1;
+  letter-spacing: -0.5px;
+}
+
+/* Medium screens and up */
+@media (min-width: 769px) {
   .logo-container {
     padding: 12px 24px;
+    gap: 8px;
   }
   
   .logo-whale {
@@ -60,30 +61,49 @@
   }
 }
 
+/* Large screens */
+@media (min-width: 1200px) {
+  .logo-container {
+    padding: 16px 32px;
+    gap: 10px;
+  }
+  
+  .logo-whale {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .logo-text {
+    font-size: 1.4rem;
+  }
+}
+
+/* Extra large screens */
+@media (min-width: 1600px) {
+  .logo-container {
+    padding: 18px 36px;
+    gap: 12px;
+  }
+  
+  .logo-whale {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .logo-text {
+    font-size: 1.5rem;
+  }
+}
+
 .logo-container:hover {
   background: rgba(60, 187, 177, 0.2);
   transform: translateY(-2px);
   box-shadow: 0 12px 40px rgba(60, 187, 177, 0.4);
 }
 
-.logo-whale {
-  width: 24px;
-  height: 24px;
-  object-fit: contain;
-  filter: brightness(0) saturate(100%) invert(71%) sepia(56%) saturate(1086%) hue-rotate(138deg) brightness(95%) contrast(86%);
-  transition: all 0.3s ease;
-}
-
 .logo-container:hover .logo-whale {
   transform: scale(1.1) rotate(5deg);
   filter: brightness(0) saturate(100%) invert(71%) sepia(56%) saturate(1086%) hue-rotate(138deg) brightness(110%) contrast(100%);
-}
-
-.logo-text {
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: #3cbbb1;
-  letter-spacing: -0.5px;
 }
 
 .logo-indicator {
@@ -360,6 +380,7 @@
 
 /* Mobile Styles */
 @media (max-width: 768px) {
+
   /* Hide floating logo on mobile */
   .floating-logo {
     display: none;
@@ -397,7 +418,8 @@
     backdrop-filter: blur(10px);
     border-radius: 25px;
     border: 1px solid rgba(255, 255, 255, 0.2);
-    height: 50px; /* Same height as nav pills */
+    height: 50px;
+    /* Same height as nav pills */
     box-sizing: border-box;
   }
 
@@ -439,21 +461,21 @@
   }
 }
 
-  /* Nav pills container for mobile */
-  .nav-pills {
-    display: flex;
-    gap: 0.5rem;
-  }
+/* Nav pills container for mobile */
+.nav-pills {
+  display: flex;
+  gap: 0.5rem;
+}
 
-  /* Individual nav pills on mobile */
-  .nav-pill {
-    padding: 0.75rem 1rem;
-    height: 50px;
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
-    font-size: 0.9rem;
-  }
+/* Individual nav pills on mobile */
+.nav-pill {
+  padding: 0.75rem 1rem;
+  height: 50px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+}
 }
 }
 

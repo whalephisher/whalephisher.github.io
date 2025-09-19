@@ -18,10 +18,10 @@ const Navbar = () => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth <= 768);
     };
-    
+
     checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
   useEffect(() => {
@@ -30,7 +30,7 @@ const Navbar = () => {
 
       // On mobile, hide sticky nav when about section is in view
       if (isMobile) {
-        const aboutSection = document.getElementById('about');
+        const aboutSection = document.getElementById("about");
         if (aboutSection) {
           const aboutTop = aboutSection.offsetTop;
           const scrollPosition = window.scrollY + window.innerHeight * 0.1; // When about is 10% visible
@@ -88,7 +88,11 @@ const Navbar = () => {
       </div>
 
       {/* Floating Navigation */}
-      <nav className={`modern-navbar ${isScrolled ? "scrolled" : ""} ${isMobile && !showStickyNav ? "hidden" : ""}`}>
+      <nav
+        className={`modern-navbar ${isScrolled ? "scrolled" : ""} ${
+          isMobile && !showStickyNav ? "hidden" : ""
+        }`}
+      >
         <div className="nav-container">
           {/* Mobile Logo */}
           <div className="mobile-logo">

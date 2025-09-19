@@ -104,7 +104,8 @@
 @media (max-width: 768px) {
     .hero {
         padding: 0 1rem;
-        min-height: 40vh; /* Much smaller hero section on mobile */
+        min-height: 40vh;
+        /* Much smaller hero section on mobile */
         display: flex;
         align-items: center;
         justify-content: center;
