@@ -11,10 +11,32 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
+  const [isMobile, setIsMobile] = useState(false);
+  const [showStickyNav, setShowStickyNav] = useState(true);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
+
+      // On mobile, hide sticky nav when about section is in view
+      if (isMobile) {
+        const aboutSection = document.getElementById('about');
+        if (aboutSection) {
+          const aboutTop = aboutSection.offsetTop;
+          const scrollPosition = window.scrollY + window.innerHeight * 0.1; // When about is 10% visible
+          setShowStickyNav(scrollPosition < aboutTop);
+        }
+      }
 
       // Update scroll progress
       const scrollHeight =
@@ -41,7 +63,7 @@ const Navbar = () => {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [isMobile]);
 
   const handleNavClick = (e, href) => {
     e.preventDefault();
@@ -66,7 +88,7 @@ const Navbar = () => {
       </div>
 
       {/* Floating Navigation */}
-      <nav className={`modern-navbar ${isScrolled ? "scrolled" : ""}`}>
+      <nav className={`modern-navbar ${isScrolled ? "scrolled" : ""} ${isMobile && !showStickyNav ? "hidden" : ""}`}>
         <div className="nav-container">
           {/* Mobile Logo */}
           <div className="mobile-logo">
