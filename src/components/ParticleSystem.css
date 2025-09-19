@@ -1,0 +1,92 @@
+/* Particle System Styles */
+
+.particle-system {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.particle {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+@keyframes particleFadeIn {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+
+    50% {
+        opacity: 0.8;
+        transform: scale(1.2);
+    }
+
+    100% {
+        opacity: 0.6;
+        transform: scale(1);
+    }
+}
+
+@keyframes particleFloat {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes particleTwinkle {
+
+    0%,
+    100% {
+        opacity: 0.6;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.3);
+    }
+}
+
+/* Different particle variations */
+.particle:nth-child(3n) {
+    animation: particleFloat 4s ease-in-out infinite;
+}
+
+.particle:nth-child(3n+1) {
+    animation: particleTwinkle 3s ease-in-out infinite;
+    animation-delay: 1s;
+}
+
+.particle:nth-child(3n+2) {
+    animation: particleFloat 5s ease-in-out infinite reverse;
+    animation-delay: 2s;
+}
+
+/* Mobile optimization */
+@media (max-width: 768px) {
+    .particle-system {
+        display: none;
+        /* Disable on mobile for performance */
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .particle-system {
+        display: none;
+        /* Respect accessibility preferences */
+    }
+}

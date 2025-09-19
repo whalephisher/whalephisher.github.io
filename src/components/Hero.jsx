@@ -1,10 +1,18 @@
 import React, { useEffect, useRef } from "react";
 import { profileData } from "../data/portfolioData";
+import { useTypewriter } from "../hooks/useAnimations";
 import "./Hero.css";
 
 const Hero = () => {
   const heroRef = useRef(null);
   const circlesRef = useRef([]);
+
+  // Typewriter effect for the description
+  const { displayText, showCursor } = useTypewriter(
+    profileData.description,
+    50,
+    1500 // Start after title animation
+  );
 
   useEffect(() => {
     const hero = heroRef.current;
@@ -115,7 +123,10 @@ const Hero = () => {
       </div>
       <div className="hero-content">
         <h1 className="hero-title animated">{profileData.title}</h1>
-        <p className="hero-desc">{profileData.description}</p>
+        <p className="hero-desc hero-typewriter">
+          {displayText}
+          {showCursor && <span className="caret">|</span>}
+        </p>
       </div>
     </header>
   );

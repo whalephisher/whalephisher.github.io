@@ -1,0 +1,100 @@
+/* Custom Cursor Styles */
+
+.custom-cursor {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    background: linear-gradient(135deg, #3cbbb1, #0097a7);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: all 0.1s ease;
+    box-shadow: 0 0 20px rgba(60, 187, 177, 0.6);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.cursor-trail {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    background: rgba(60, 187, 177, 0.4);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: all 0.15s ease;
+}
+
+/* Hover state */
+.custom-cursor.hover {
+    width: 40px;
+    height: 40px;
+    background: rgba(60, 187, 177, 0.2);
+    border: 3px solid #3cbbb1;
+    box-shadow:
+        0 0 30px rgba(60, 187, 177, 0.8),
+        inset 0 0 20px rgba(60, 187, 177, 0.3);
+}
+
+/* Click effect */
+.custom-cursor.click {
+    animation: cursorClick 0.3s ease;
+}
+
+@keyframes cursorClick {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    50% {
+        transform: translate(-50%, -50%) scale(0.8);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+/* Pulsing animation for active states */
+.custom-cursor.active {
+    animation: cursorPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes cursorPulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 20px rgba(60, 187, 177, 0.6);
+    }
+
+    50% {
+        box-shadow: 0 0 40px rgba(60, 187, 177, 1);
+    }
+}
+
+/* Hide on mobile and touch devices */
+@media (max-width: 768px) {
+
+    .custom-cursor,
+    .cursor-trail {
+        display: none !important;
+    }
+}
+
+@media (hover: none) {
+
+    .custom-cursor,
+    .cursor-trail {
+        display: none !important;
+    }
+}
+
+/* Accessibility: Hide for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+
+    .custom-cursor,
+    .cursor-trail {
+        display: none !important;
+    }
+}

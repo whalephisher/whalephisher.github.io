@@ -1,9 +1,18 @@
 import React from "react";
 import { navigationData } from "../data/portfolioData";
+import { useSmoothScroll } from "../hooks/useAnimations";
+import { RippleEffect } from "./InteractiveEffects";
 import "./Navbar.css";
 
 const Navbar = () => {
   const { logo, links, socialLinks } = navigationData;
+  const scrollToElement = useSmoothScroll();
+
+  const handleNavClick = (e, href) => {
+    e.preventDefault();
+    const elementId = href.replace("#", "");
+    scrollToElement(elementId, 80); // 80px offset for navbar height
+  };
 
   return (
     <nav className="navbar">
@@ -12,7 +21,11 @@ const Navbar = () => {
       <ul className="nav-links">
         {links.map((link, index) => (
           <li key={index}>
-            <a href={link.href}>{link.label}</a>
+            <RippleEffect>
+              <a href={link.href} onClick={(e) => handleNavClick(e, link.href)}>
+                {link.label}
+              </a>
+            </RippleEffect>
           </li>
         ))}
       </ul>

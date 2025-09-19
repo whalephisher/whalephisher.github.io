@@ -9,15 +9,17 @@ const Education = () => {
     const badges = educationRef.current?.querySelectorAll(".edu-badge");
     if (!badges) return;
 
-    // Animate badges in sequence
+    // Create a magnetic flip animation
     badges.forEach((badge, i) => {
       badge.style.opacity = "0";
-      badge.style.transform = "scale(0.9) translateY(10px)";
+      badge.style.transform = "rotateY(90deg) scale(0.5)";
+      badge.style.transformStyle = "preserve-3d";
+      badge.style.transition = "all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)";
 
       setTimeout(() => {
         badge.style.opacity = "1";
-        badge.style.transform = "scale(1) translateY(0)";
-      }, 50 * i);
+        badge.style.transform = "rotateY(0deg) scale(1)";
+      }, 80 * i);
     });
   }, []);
 

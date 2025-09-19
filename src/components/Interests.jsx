@@ -9,15 +9,21 @@ const Interests = () => {
     const items = interestsRef.current?.querySelectorAll(".interest-item");
     if (!items) return;
 
-    // Animate interests with a throwing effect
+    // Create a popcorn/explosion animation
     items.forEach((item, i) => {
+      const randomX = (Math.random() - 0.5) * 100;
+      const randomY = (Math.random() - 0.5) * 100;
+      const randomRotation = (Math.random() - 0.5) * 720;
+
       item.style.opacity = "0";
-      item.style.transform = "translateY(-40px) scale(0.7)";
+      item.style.transform = `translate(${randomX}px, ${randomY}px) rotate(${randomRotation}deg) scale(0)`;
+      item.style.transition =
+        "all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
 
       setTimeout(() => {
         item.style.opacity = "1";
-        item.style.transform = "translateY(0) scale(1)";
-      }, 60 * i);
+        item.style.transform = "translate(0, 0) rotate(0deg) scale(1)";
+      }, 50 * i);
     });
   }, []);
 

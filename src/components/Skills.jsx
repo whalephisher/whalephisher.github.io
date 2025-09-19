@@ -9,15 +9,16 @@ const Skills = () => {
     const tags = skillsRef.current?.querySelectorAll(".skill-tag");
     if (!tags) return;
 
-    // Animate tags in sequence
+    // Create a bouncing cascade animation
     tags.forEach((tag, i) => {
       tag.style.opacity = "0";
-      tag.style.transform = "scale(0.8)";
+      tag.style.transform = "translateY(-30px) rotate(10deg) scale(0)";
+      tag.style.transition = "all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55)";
 
       setTimeout(() => {
         tag.style.opacity = "1";
-        tag.style.transform = "scale(1)";
-      }, 30 * i);
+        tag.style.transform = "translateY(0) rotate(0deg) scale(1)";
+      }, 40 * i);
     });
   }, []);
 
