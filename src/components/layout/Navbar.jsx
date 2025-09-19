@@ -78,30 +78,15 @@ const Navbar = () => {
 
   return (
     <>
-      {/* Desktop Floating Logo - ALWAYS LEFT */}
-      {!isMobile && (
-        <div className={`floating-logo ${isScrolled ? "scrolled" : ""}`}>
-          <div className="logo-container">
-            <img src={whaleImage} alt="Whale" className="logo-whale" />
-            <span className="logo-text">{logo}</span>
-          </div>
-        </div>
-      )}
-
-      {/* Mobile Logo - ALWAYS LEFT, SEPARATE FROM NAV */}
-      {isMobile && (
-        <div className={`mobile-logo ${isScrolled ? "scrolled" : ""}`} style={{background: 'red', color: 'white'}}>
+      {/* Desktop Logo - Fixed Left Position */}
+      <div className={`floating-logo ${isScrolled ? "scrolled" : ""}`}>
+        <div className="logo-container">
           <img src={whaleImage} alt="Whale" className="logo-whale" />
-          <span className="logo-text">{logo} MOBILE</span>
+          <span className="logo-text">{logo}</span>
         </div>
-      )}
-
-      {/* DEBUG: Show mobile state */}
-      <div style={{position: 'fixed', top: '100px', left: '10px', background: 'yellow', color: 'black', padding: '5px', zIndex: 9999}}>
-        Mobile: {isMobile ? 'TRUE' : 'FALSE'} | Width: {window.innerWidth}
       </div>
 
-      {/* Navigation - ALWAYS RIGHT */}
+      {/* Navigation - Fixed Right Position */}
       <nav
         className={`modern-navbar ${isScrolled ? "scrolled" : ""} ${
           isMobile && !showStickyNav ? "hidden" : ""
