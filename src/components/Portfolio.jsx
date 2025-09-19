@@ -31,6 +31,8 @@ const Portfolio = () => {
               className={`portfolio-card animate-scale-in animate-delay-${
                 (index + 1) * 200
               } ${gridVisible ? "visible" : ""}`}
+              onClick={() => project.link && window.open(project.link, '_blank')}
+              style={{ cursor: project.link ? 'pointer' : 'default' }}
             >
               <div className="portfolio-image">
                 {project.image ? (

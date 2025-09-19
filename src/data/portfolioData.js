@@ -131,12 +131,14 @@ export const portfolioData = [
         title: "Chordex",
         description: "Built an interactive React + TypeScript app with chord recognition, reverse chord lookup, capo transposition, and progression assistance. Designed a responsive UI for cross-device learning with clean visualization.",
         image: "/chordex.png",
-        technologies: ["React", "TypeScript", "CSS"]
+        technologies: ["React", "TypeScript", "CSS"],
+        link: "https://whalephisher.github.io/chordex-site/"
     },
     {
         id: 2,
         title: "Text Editor",
         description: "Developed a Node.js + WebSocket editor with Monaco integration for syntax highlighting, tab support, and auto language detection. Added multi-file upload/download and live sync across devices with a streamlined UI.",
-        technologies: ["Node.js", "WebSocket", "Monaco Editor"]
+        technologies: ["Node.js", "WebSocket", "Monaco Editor"],
+        link: "https://github.com/whalephisher/texteditor"
     }
 ];
