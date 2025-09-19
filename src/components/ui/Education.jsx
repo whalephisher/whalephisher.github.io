@@ -3,110 +3,121 @@ import { educationData } from "../../data/portfolioData";
 import "./Education.css";
 
 const Education = () => {
+  const [visibleSections, setVisibleSections] = useState(new Set());
+  const [visibleCards, setVisibleCards] = useState(new Set());
   const educationRef = useRef(null);
-  const [unlockedItems, setUnlockedItems] = useState(new Set());
 
   useEffect(() => {
-    const badges = educationRef.current?.querySelectorAll(".edu-item");
-    if (!badges) return;
+    const categoryObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const sectionId = entry.target.dataset.section;
+          if (entry.isIntersecting && entry.intersectionRatio > 0.15) {
+            setVisibleSections((prev) => new Set([...prev, sectionId]));
+          } else if (!entry.isIntersecting || entry.intersectionRatio < 0.05) {
+            setVisibleSections((prev) => {
+              const newSet = new Set(prev);
+              newSet.delete(sectionId);
+              return newSet;
+            });
+          }
+        });
+      },
+      { threshold: [0, 0.05, 0.15, 0.3] }
+    );
 
-    // Create achievement unlocking animation
-    badges.forEach((badge, i) => {
-      badge.style.opacity = "0";
-      badge.style.transform = "scale(0.5) rotateY(90deg)";
-      badge.style.filter = "grayscale(100%) brightness(0.5)";
+    // More forgiving card observer - once visible, stays visible unless completely out of view
+    const cardObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const cardId = entry.target.dataset.cardId;
+          if (entry.isIntersecting && entry.intersectionRatio > 0.1) {
+            setVisibleCards((prev) => new Set([...prev, cardId]));
+          } else if (!entry.isIntersecting) {
+            // Only remove if completely out of viewport
+            setVisibleCards((prev) => {
+              const newSet = new Set(prev);
+              newSet.delete(cardId);
+              return newSet;
+            });
+          }
+        });
+      },
+      {
+        threshold: [0, 0.1, 0.25],
+        rootMargin: "50px 0px -50px 0px", // Give some buffer space
+      }
+    );
 
-      setTimeout(() => {
-        badge.style.opacity = "1";
-        badge.style.transform = "scale(1) rotateY(0deg)";
-        badge.style.filter = "grayscale(0%) brightness(1)";
-        badge.style.transition =
-          "all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)";
+    const sections = educationRef.current?.querySelectorAll(
+      ".education-category"
+    );
+    const cards = educationRef.current?.querySelectorAll(".education-card");
 
-        // Add to unlocked items
-        setTimeout(() => {
-          setUnlockedItems((prev) => new Set([...prev, i]));
-        }, 400);
-      }, 120 * i);
-    });
+    sections?.forEach((section) => categoryObserver.observe(section));
+    cards?.forEach((card) => cardObserver.observe(card));
+
+    return () => {
+      categoryObserver.disconnect();
+      cardObserver.disconnect();
+    };
   }, []);
-
-  const getEducationType = (item) => {
-    if (item.includes("B.S.")) return "degree";
-    if (item.includes("Certificate") || item.includes("Professional"))
-      return "certificate";
-    if (item.includes("CompTIA") || item.includes("ce")) return "certification";
-    if (item.includes("Course") || item.includes("Academy")) return "course";
-    return "achievement";
-  };
-
-  const getEducationIcon = (type) => {
-    switch (type) {
-      case "degree":
-        return "🎓";
-      case "certificate":
-        return "📜";
-      case "certification":
-        return "🏆";
-      case "course":
-        return "📚";
-      default:
-        return "⭐";
-    }
-  };
-
-  const getEducationColor = (type) => {
-    switch (type) {
-      case "degree":
-        return "#FFD700";
-      case "certificate":
-        return "#3cbbb1";
-      case "certification":
-        return "#FF6B6B";
-      case "course":
-        return "#4ECDC4";
-      default:
-        return "#95E1D3";
-    }
-  };
 
   return (
     <div className="education-container" ref={educationRef}>
-      <div className="education-grid">
-        {educationData.map((item, index) => {
-          const type = getEducationType(item);
-          const icon = getEducationIcon(type);
-          const color = getEducationColor(type);
-          const isUnlocked = unlockedItems.has(index);
-
-          return (
-            <div
-              key={index}
-              className={`edu-item ${type} ${isUnlocked ? "unlocked" : ""}`}
-              style={{ "--accent-color": color }}
-            >
-              <div className="edu-icon">{icon}</div>
-              <div className="edu-content">
-                <span className="edu-text">{item}</span>
-                <div className="edu-progress">
-                  <div className="progress-bar"></div>
-                </div>
-              </div>
-              <div className="unlock-effect"></div>
+      <div className="education-content">
+        {Object.entries(educationData).map(([key, category], categoryIndex) => (
+          <div
+            key={key}
+            className={`education-category ${
+              visibleSections.has(key) ? "visible" : ""
+            }`}
+            data-section={key}
+            style={{ "--delay": `${categoryIndex * 0.1}s` }}
+          >
+            <div className="category-header">
+              <span className="category-icon">{category.icon}</span>
+              <h3 className="category-title">{category.title}</h3>
+              <div
+                className="category-line"
+                style={{ "--category-color": category.color }}
+              ></div>
             </div>
-          );
-        })}
-      </div>
 
-      <div className="education-stats">
-        <div className="stat-item">
-          <span className="stat-number">{unlockedItems.size}</span>
-          <span className="stat-label">Achievements Unlocked</span>
-        </div>
-        <div className="stat-item">
-          <span className="stat-number">{educationData.length}</span>
-          <span className="stat-label">Total Milestones</span>
-        </div>
+            <div className="category-items">
+              {category.items.map((item, itemIndex) => {
+                const cardId = `${key}-${itemIndex}`;
+                return (
+                  <div
+                    key={itemIndex}
+                    className={`education-card ${
+                      visibleCards.has(cardId) ? "animate-in" : ""
+                    }`}
+                    data-card-id={cardId}
+                    style={{
+                      "--item-delay": `${itemIndex * 0.15}s`,
+                      "--accent-color": category.color,
+                    }}
+                  >
+                    <div className="card-header">
+                      <h4 className="item-title">{item.title}</h4>
+                      <span className="item-year">{item.year}</span>
+                    </div>
+                    <div className="card-body">
+                      <p className="item-institution">{item.institution}</p>
+                      <p className="item-details">{item.details}</p>
+                    </div>
+                    <div
+                      className="card-accent"
+                      style={{ backgroundColor: category.color }}
+                    ></div>
+                    <div className="card-glow"></div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );

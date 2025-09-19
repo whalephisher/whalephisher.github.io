@@ -109,15 +109,78 @@ export const skillsData = [
     "Wireshark", "Metasploit", "Nmap", "Ghidra", "IDA Pro", "Linux/Unix Systems"
 ];
 
-export const educationData = [
-    "Computer Information Systems B.S. (ASU, 2021)",
-    "Cyber Common Technical Core (US Army, 2021-2022)",
-    "Basic Leader Course (US Army NCO Academy Hawaii, 2023)",
-    "CompTIA Security+ ce (2023)",
-    "Google Project Management Professional Certificate (2024)",
-    "IBM Data Analyst Professional Certificate (2024)",
-    "CompTIA A+ ce (2024)"
-];
+export const educationData = {
+    degree: {
+        title: "Academic Degree",
+        icon: "🎓",
+        color: "#FFD700",
+        items: [
+            {
+                title: "Bachelor of Science in Computer Information Systems",
+                institution: "Arizona State University",
+                year: "2021",
+                details: "Focus on software development, database management, and systems analysis"
+            }
+        ]
+    },
+    certifications: {
+        title: "Professional Certifications",
+        icon: "🏆",
+        color: "#FF6B6B",
+        items: [
+            {
+                title: "CompTIA Security+ ce",
+                institution: "CompTIA",
+                year: "2023",
+                details: "Cybersecurity fundamentals and best practices"
+            },
+            {
+                title: "CompTIA A+ ce",
+                institution: "CompTIA",
+                year: "2024",
+                details: "Hardware and software troubleshooting"
+            }
+        ]
+    },
+    certificates: {
+        title: "Professional Certificates",
+        icon: "📜",
+        color: "#3cbbb1",
+        items: [
+            {
+                title: "Google Project Management Professional Certificate",
+                institution: "Google",
+                year: "2024",
+                details: "Project planning, execution, and agile methodologies"
+            },
+            {
+                title: "IBM Data Analyst Professional Certificate",
+                institution: "IBM",
+                year: "2024",
+                details: "Data analysis, visualization, and statistical methods"
+            }
+        ]
+    },
+    military: {
+        title: "Military Education",
+        icon: "⭐",
+        color: "#4ECDC4",
+        items: [
+            {
+                title: "Cyber Common Technical Core",
+                institution: "US Army",
+                year: "2021-2022",
+                details: "Advanced cybersecurity operations and network defense"
+            },
+            {
+                title: "Basic Leader Course",
+                institution: "US Army NCO Academy Hawaii",
+                year: "2023",
+                details: "Leadership development and military management"
+            }
+        ]
+    }
+};
 
 export const interestsData = [
     "Tech Innovation", "Acoustic Guitar", "Electric Guitar", "Hiking",
