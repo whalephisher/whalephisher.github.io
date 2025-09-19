@@ -68,6 +68,12 @@ const Navbar = () => {
       {/* Floating Navigation */}
       <nav className={`modern-navbar ${isScrolled ? "scrolled" : ""}`}>
         <div className="nav-container">
+          {/* Mobile Logo */}
+          <div className="mobile-logo">
+            <img src={whaleImage} alt="Whale" className="mobile-logo-whale" />
+            <span className="mobile-logo-text">{logo}</span>
+          </div>
+
           {/* Floating Navigation Pills */}
           <div className="nav-pills">
             {links.map((link, index) => (

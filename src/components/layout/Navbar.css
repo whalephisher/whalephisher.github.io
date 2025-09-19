@@ -322,75 +322,41 @@
   }
 }
 
-/* Mobile Responsive */
+/* Hide mobile logo on desktop by default */
+.mobile-logo {
+  display: none;
+}
+
+/* Mobile Styles */
 @media (max-width: 768px) {
-
-  .floating-logo,
-  .modern-navbar {
-    position: relative;
-    top: auto;
-    left: auto;
-    right: auto;
-  }
-
-  .modern-navbar {
-    width: 100%;
-    padding: 0 20px;
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  }
-
-  .nav-container {
-    justify-content: space-between;
-    padding: 15px 0;
-  }
-
-  .nav-pills {
-    background: transparent;
-    border: none;
-    box-shadow: none;
-    padding: 0;
-  }
-
-  .nav-pill {
-    padding: 8px 16px;
-    font-size: 0.85rem;
-  }
-
+  /* Hide floating logo on mobile */
   .floating-logo {
-    position: static;
-    background: transparent;
-    backdrop-filter: none;
-    border: none;
-    box-shadow: none;
-    margin: 0;
-    padding: 0;
-  }
-
-  .logo-container {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .logo-whale {
-    width: 24px;
-    height: 24px;
-  }
-
-  .logo-text {
-    font-size: 1.1rem;
-    font-weight: 600;
-  }
-
-  .logo-indicator {
     display: none;
   }
 
-  .social-menu {
-    top: 100%;
-    right: 0;
+  /* Show mobile logo in navbar */
+  .mobile-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .mobile-logo-whale {
+    width: 20px;
+    height: 20px;
+    filter: brightness(0) saturate(100%) invert(70%) sepia(89%) saturate(400%) hue-rotate(158deg) brightness(98%) contrast(86%);
+  }
+
+  .mobile-logo-text {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--accent-color);
+    text-shadow: 0 0 10px rgba(26, 188, 156, 0.3);
   }
 }
 
