@@ -78,29 +78,37 @@ const Navbar = () => {
 
   return (
     <>
-      {/* Floating Logo */}
-      <div className={`floating-logo ${isScrolled ? "scrolled" : ""}`}>
-        <div className="logo-container">
-          <img src={whaleImage} alt="Whale" className="logo-whale" />
-          <span className="logo-text">{logo}</span>
-          <div className="logo-indicator"></div>
+      {/* Desktop Floating Logo - ALWAYS LEFT */}
+      {!isMobile && (
+        <div className={`floating-logo ${isScrolled ? "scrolled" : ""}`}>
+          <div className="logo-container">
+            <img src={whaleImage} alt="Whale" className="logo-whale" />
+            <span className="logo-text">{logo}</span>
+          </div>
         </div>
+      )}
+
+      {/* Mobile Logo - ALWAYS LEFT, SEPARATE FROM NAV */}
+      {isMobile && (
+        <div className={`mobile-logo ${isScrolled ? "scrolled" : ""}`} style={{background: 'red', color: 'white'}}>
+          <img src={whaleImage} alt="Whale" className="logo-whale" />
+          <span className="logo-text">{logo} MOBILE</span>
+        </div>
+      )}
+
+      {/* DEBUG: Show mobile state */}
+      <div style={{position: 'fixed', top: '100px', left: '10px', background: 'yellow', color: 'black', padding: '5px', zIndex: 9999}}>
+        Mobile: {isMobile ? 'TRUE' : 'FALSE'} | Width: {window.innerWidth}
       </div>
 
-      {/* Floating Navigation */}
+      {/* Navigation - ALWAYS RIGHT */}
       <nav
         className={`modern-navbar ${isScrolled ? "scrolled" : ""} ${
           isMobile && !showStickyNav ? "hidden" : ""
         }`}
       >
         <div className="nav-container">
-          {/* Mobile Logo */}
-          <div className="mobile-logo">
-            <img src={whaleImage} alt="Whale" className="mobile-logo-whale" />
-            <span className="mobile-logo-text">{logo}</span>
-          </div>
-
-          {/* Floating Navigation Pills */}
+          {/* Navigation Pills */}
           <div className="nav-pills">
             {links.map((link, index) => (
               <RippleEffect key={index} className="nav-pill-wrapper">

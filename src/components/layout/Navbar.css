@@ -1,75 +1,45 @@
 /* Modern Floating Navbar */
 
-/* CSS Custom Properties for truly dynamic responsive sizing */
-:root {
-  --nav-pill-padding-y: 0.6rem;
-  --nav-pill-padding-x: 1.2rem;
-  --nav-pill-font-size: 0.85rem;
-  --nav-pill-font-weight: 500;
-  --nav-pill-border-radius: 1.5625rem; /* 25px equivalent but in rem */
-  --nav-pill-gap: 0.5rem;
-}
+/* CLEAN NAVBAR REWRITE - Simple & Effective */
 
-/* Responsive sizing with truly dynamic units */
-@media (min-width: 48rem) { /* 768px */
-  :root {
-    --nav-pill-padding-y: 0.75rem;
-    --nav-pill-padding-x: 1.25rem;
-    --nav-pill-font-size: 0.9rem;
-    --nav-pill-gap: 0.5rem;
-  }
-}
-
-@media (min-width: 75rem) { /* 1200px */
-  :root {
-    --nav-pill-padding-y: 0.875rem;
-    --nav-pill-padding-x: 1.5rem;
-    --nav-pill-font-size: 1rem;
-    --nav-pill-gap: 0.625rem;
-  }
-}
-
-/* Floating Logo */
+/* ===== FLOATING LOGO (DESKTOP ONLY) ===== */
 .floating-logo {
   position: fixed;
-  top: 1.875rem; /* 30px in rem */
-  left: 1.875rem; /* 30px in rem */
+  top: 1.875rem;
+  left: 1.875rem;
   z-index: 1000;
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  transform: scale(1);
+  transition: all 0.4s ease;
 }
 
 .floating-logo.scrolled {
-  top: 1.25rem; /* 20px in rem */
-  left: 1.25rem; /* 20px in rem */
-  transform: scale(0.9);
+  top: 1.25rem;
+  left: 1.25rem;
 }
 
 .logo-container {
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: var(--nav-pill-border-radius);
-  padding: var(--nav-pill-padding-y) var(--nav-pill-padding-x);
+  border-radius: 25px;
+  padding: 0.75rem 1.25rem;
   display: flex;
   align-items: center;
-  gap: var(--nav-pill-gap);
+  gap: 0.5rem;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
   transition: all 0.3s ease;
-  min-height: 0; /* Allow natural height from padding */
 }
 
 .logo-whale {
-  width: 1.25rem; /* 20px in rem */
-  height: 1.25rem; /* 20px in rem */
+  width: 1.125rem; /* 18px - properly sized */
+  height: 1.125rem;
   object-fit: contain;
   filter: brightness(0) saturate(100%) invert(71%) sepia(56%) saturate(1086%) hue-rotate(138deg) brightness(95%) contrast(86%);
   transition: all 0.3s ease;
 }
 
 .logo-text {
-  font-size: var(--nav-pill-font-size);
-  font-weight: var(--nav-pill-font-weight);
+  font-size: 0.9rem; /* Same as nav pills */
+  font-weight: 600;
   color: #3cbbb1;
   letter-spacing: -0.5px;
 }
@@ -82,443 +52,210 @@
 
 .logo-container:hover .logo-whale {
   transform: scale(1.1) rotate(5deg);
-  filter: brightness(0) saturate(100%) invert(71%) sepia(56%) saturate(1086%) hue-rotate(138deg) brightness(110%) contrast(100%);
 }
 
-.logo-container:hover {
-  background: rgba(60, 187, 177, 0.2);
-  transform: translateY(-2px);
-  box-shadow: 0 12px 40px rgba(60, 187, 177, 0.4);
-}
-
-.logo-container:hover .logo-whale {
-  transform: scale(1.1) rotate(5deg);
-  filter: brightness(0) saturate(100%) invert(71%) sepia(56%) saturate(1086%) hue-rotate(138deg) brightness(110%) contrast(100%);
-}
-
-/* Scale up for large screens */
-@media (min-width: 1024px) {
-  .logo-container {
-    padding: 12px 24px;
-    gap: 8px;
-  }
-
-  .logo-whale {
-    width: 24px;
-    height: 24px;
-  }
-
-  .logo-text {
-    font-size: 1.2rem;
-  }
-}
-
-/* Scale up for extra large screens */
-@media (min-width: 1440px) {
-  .logo-container {
-    padding: 14px 28px;
-    gap: 10px;
-  }
-
-  .logo-whale {
-    width: 28px;
-    height: 28px;
-  }
-
-  .logo-text {
-    font-size: 1.3rem;
-  }
-}
-
-/* Scale up for ultra wide screens */
-@media (min-width: 1920px) {
-  .logo-container {
-    padding: 16px 32px;
-    gap: 12px;
-  }
-
-  .logo-whale {
-    width: 32px;
-    height: 32px;
-  }
-
-  .logo-text {
-    font-size: 1.4rem;
-  }
-}
-
-.logo-indicator {
-  width: 8px;
-  height: 8px;
-  background: linear-gradient(135deg, #3cbbb1, #0097a7);
-  border-radius: 50%;
-  animation: pulse 2s ease-in-out infinite;
-}
-
-/* Modern Navbar */
+/* ===== NAVIGATION (ALWAYS RIGHT) ===== */
 .modern-navbar {
   position: fixed;
-  top: 1.875rem; /* 30px in rem */
-  right: 1.875rem; /* 30px in rem */
+  top: 1.875rem;
+  right: 1.875rem;
   z-index: 1000;
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: all 0.4s ease;
 }
 
 .modern-navbar.scrolled {
-  top: 1.25rem; /* 20px in rem */
-  right: 1.25rem; /* 20px in rem */
+  top: 1.25rem;
+  right: 1.25rem;
 }
 
 .nav-container {
   display: flex;
   align-items: center;
-  gap: 1.25rem; /* 20px in rem */
-  width: max-content; /* Prevent shrinking */
-  margin-left: auto; /* Force right alignment */
+  gap: 1.25rem;
 }
 
-/* Navigation Pills */
 .nav-pills {
   display: flex;
-  gap: 8px;
+  gap: 0.5rem;
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 50px;
-  padding: 8px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-}
-
-.nav-pill-wrapper {
   border-radius: 25px;
-  overflow: hidden;
+  padding: 0.5rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
 .nav-pill {
   display: flex;
   align-items: center;
-  padding: var(--nav-pill-padding-y) var(--nav-pill-padding-x);
-  border-radius: var(--nav-pill-border-radius);
+  padding: 0.75rem 1.25rem;
+  border-radius: 25px;
   text-decoration: none;
   color: rgba(255, 255, 255, 0.8);
-  font-weight: var(--nav-pill-font-weight);
-  font-size: var(--nav-pill-font-size);
-  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
 }
 
 .nav-pill:hover {
-  background: rgba(255, 255, 255, 0.1);
-  color: #3cbbb1;
-  transform: translateY(-1px);
-}
-
-.nav-pill.active {
   background: rgba(60, 187, 177, 0.2);
   color: #3cbbb1;
-  box-shadow: inset 0 0 20px rgba(60, 187, 177, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(60, 187, 177, 0.3);
 }
 
-.nav-pill-text {
+.nav-pill:active {
+  transform: translateY(0);
+}
+
+/* Contact Button */
+.nav-contact-btn {
+  background: linear-gradient(135deg, #3cbbb1, #0097a7);
+  color: white !important;
+  font-weight: 600;
   position: relative;
-  z-index: 2;
+  overflow: hidden;
 }
 
-.nav-pill-indicator {
+.nav-contact-btn::before {
+  content: '';
   position: absolute;
-  bottom: 0;
-  left: 0;
+  top: 0;
+  left: -100%;
   width: 100%;
-  height: 2px;
-  background: linear-gradient(90deg, #3cbbb1, #0097a7);
-  transform: scaleX(0);
-  transition: transform 0.3s ease;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s;
 }
 
-.nav-pill.active .nav-pill-indicator {
-  transform: scaleX(1);
+.nav-contact-btn:hover::before {
+  left: 100%;
 }
 
-/* Social Dock */
-.social-dock {
-  position: relative;
+.nav-contact-btn:hover {
+  background: linear-gradient(135deg, #0097a7, #3cbbb1);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(60, 187, 177, 0.5);
 }
 
-.dock-toggle {
-  width: 50px;
-  height: 50px;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 50%;
-  cursor: pointer;
-  display: flex;
+/* ===== MOBILE LOGO (MOBILE ONLY) ===== */
+.mobile-logo {
+  display: none; /* Hidden by default */
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 1000;
   align-items: center;
-  justify-content: center;
-  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-}
-
-.dock-toggle:hover {
-  background: rgba(60, 187, 177, 0.2);
-  transform: translateY(-2px) scale(1.05);
-  box-shadow: 0 12px 40px rgba(60, 187, 177, 0.4);
-}
-
-.dock-icon {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-}
-
-.dock-icon span {
-  width: 16px;
-  height: 2px;
-  background: #3cbbb1;
-  border-radius: 1px;
-  transition: all 0.3s ease;
-}
-
-.dock-toggle.open .dock-icon span:nth-child(1) {
-  transform: rotate(45deg) translate(5px, 5px);
-}
-
-.dock-toggle.open .dock-icon span:nth-child(2) {
-  opacity: 0;
-  transform: translateX(10px);
-}
-
-.dock-toggle.open .dock-icon span:nth-child(3) {
-  transform: rotate(-45deg) translate(5px, -5px);
-}
-
-/* Social Menu */
-.social-menu {
-  position: absolute;
-  top: 60px;
-  right: 0;
+  gap: 0.375rem;
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 20px;
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-10px) scale(0.9);
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  padding: 0.5rem 0.75rem;
+  transition: all 0.4s ease;
+  /* DEBUG: Add visible border to see if element exists */
+  border: 3px solid red !important;
 }
 
-.social-menu.open {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0) scale(1);
+.mobile-logo.scrolled {
+  top: 0.75rem;
+  left: 0.75rem;
+  transform: scale(0.9);
 }
 
-.social-item {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
-  text-decoration: none;
-  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  position: relative;
-  opacity: 0;
-  transform: translateY(10px);
-  animation: socialItemFadeIn 0.4s ease forwards;
-  animation-delay: var(--delay);
+.mobile-logo .logo-whale {
+  width: 0.875rem; /* 14px - smaller than nav pills on mobile */
+  height: 0.875rem;
+  filter: brightness(0) saturate(100%) invert(71%) sepia(56%) saturate(1086%) hue-rotate(138deg) brightness(95%) contrast(86%);
 }
 
-.social-item:hover {
-  background: rgba(60, 187, 177, 0.3);
-  transform: translateY(-2px) scale(1.1);
-  box-shadow: 0 6px 20px rgba(60, 187, 177, 0.4);
+.mobile-logo .logo-text {
+  font-size: 0.8rem; /* Slightly smaller than nav pills */
+  font-weight: 600;
+  color: #3cbbb1;
 }
 
-.social-item img {
-  width: 20px;
-  height: 20px;
-  filter: brightness(1.2);
-}
+/* ===== RESPONSIVE DESIGN ===== */
 
-.social-tooltip {
-  position: absolute;
-  right: 55px;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.8);
-  color: white;
-  padding: 4px 8px;
-  border-radius: 6px;
-  font-size: 0.75rem;
-  white-space: nowrap;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.3s ease;
-  pointer-events: none;
-}
-
-.social-item:hover .social-tooltip {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(-50%) translateX(-5px);
-}
-
-/* Scroll Indicator - Disabled */
-.scroll-indicator {
-  display: none;
-}
-
-.scroll-progress {
-  display: none;
-}
-
-/* Animations */
-@keyframes pulse {
-
-  0%,
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-
-  50% {
-    opacity: 0.6;
-    transform: scale(1.2);
-  }
-}
-
-@keyframes socialItemFadeIn {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes gradientShift {
-  0% {
-    background-position: 0% 50%;
-  }
-
-  50% {
-    background-position: 100% 50%;
-  }
-
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-/* Hide mobile logo on desktop by default */
-.mobile-logo {
-  display: none;
-}
-
-/* Mobile Styles */
+/* MOBILE: Simple and clean */
 @media (max-width: 768px) {
-
-  /* Hide floating logo on mobile */
+  /* Hide desktop floating logo */
   .floating-logo {
-    display: none;
+    display: none !important;
   }
-
-  /* Make navbar sticky until about section */
-  .modern-navbar {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    transition: transform 0.3s ease;
-  }
-
-  /* Hide navbar when about section is reached */
-  .modern-navbar.hidden {
-    transform: translateY(-100%);
-  }
-
-  /* Mobile navigation container - align items properly */
-  .nav-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.75rem 1rem;
-    gap: 1rem;
-  }
-
-  /* Mobile logo - uses same variables as nav pills */
+  
+  /* Show mobile logo */
   .mobile-logo {
-    display: flex;
-    align-items: center;
-    gap: var(--nav-pill-gap);
-    padding: var(--nav-pill-padding-y) var(--nav-pill-padding-x);
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border-radius: var(--nav-pill-border-radius);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-sizing: border-box;
+    display: flex !important;
+    /* DEBUG: Force visibility */
+    background: red !important;
   }
-
-  .mobile-logo-whale {
-    width: 1.25rem; /* 20px in rem */
-    height: 1.25rem; /* 20px in rem */
-    filter: brightness(0) saturate(100%) invert(70%) sepia(89%) saturate(400%) hue-rotate(158deg) brightness(98%) contrast(86%);
+  
+  /* Move navbar closer to edges */
+  .modern-navbar {
+    top: 1rem;
+    right: 1rem;
   }
-
-  .mobile-logo-text {
-    font-size: var(--nav-pill-font-size);
-    font-weight: var(--nav-pill-font-weight);
-    color: var(--accent-color);
-    text-shadow: 0 0 10px rgba(26, 188, 156, 0.3);
+  
+  .modern-navbar.scrolled {
+    top: 0.75rem;
+    right: 0.75rem;
+  }
+  
+  /* Make nav pills smaller but not tiny */
+  .nav-pill {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8rem;
+  }
+  
+  .nav-pills {
+    gap: 0.375rem;
+    padding: 0.375rem;
   }
 }
 
-/* Smaller mobile screens */
-@media (max-width: 480px) {
-  .mobile-logo {
-    padding: 0.6rem 0.8rem;
-    height: 45px;
-    gap: 6px;
+/* TABLET: Balanced sizing */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .logo-whale {
+    width: 1.125rem;
+    height: 1.125rem;
   }
-
-  .mobile-logo-whale {
-    width: 18px;
-    height: 18px;
+  
+  .logo-text {
+    font-size: 0.9rem;
   }
-
-  .mobile-logo-text {
-    font-size: 1rem;
-  }
-
+  
   .nav-pill {
-    padding: 0.6rem 0.8rem;
-    height: 45px;
+    padding: 0.625rem 1rem;
     font-size: 0.85rem;
   }
+  
+  /* Hide mobile logo on tablet+ */
+  .mobile-logo {
+    display: none !important;
+  }
 }
 
-/* Nav pills container for mobile */
-.nav-pills {
-  display: flex;
-  gap: 0.5rem;
-}
-
-/* Individual nav pills on mobile */
-.nav-pill {
-  padding: 0.75rem 1rem;
-  height: 50px;
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  font-size: 0.9rem;
-}
-
-/* Legacy styles cleanup - hide old navbar if it exists */
-.navbar {
-  display: none;
+/* DESKTOP: Standard sizing */
+@media (min-width: 1025px) {
+  .logo-whale {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+  
+  .logo-text {
+    font-size: 1rem;
+  }
+  
+  .nav-pill {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.9rem;
+  }
+  
+  /* Hide mobile logo on desktop */
+  .mobile-logo {
+    display: none !important;
+  }
 }
