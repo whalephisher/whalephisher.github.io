@@ -1,0 +1,15 @@
+/* Footer Component Styles */
+
+.footer {
+    background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
+    padding: 2rem 0;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 4rem;
+}
+
+.footer p {
+    color: #b3e5fc;
+    font-size: 0.9rem;
+    opacity: 0.8;
+}

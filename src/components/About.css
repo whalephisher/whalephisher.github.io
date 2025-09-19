@@ -1,0 +1,170 @@
+/* About Component Styles */
+
+.about-section {
+    padding: 4rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    min-height: 100vh;
+}
+
+.about-profile {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+}
+
+.profile-img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid rgba(60, 187, 177, 0.3);
+    box-shadow: 0 8px 32px rgba(60, 187, 177, 0.2);
+}
+
+.profile-intro h3 {
+    font-size: 1.8rem;
+    color: #3cbbb1;
+    margin-bottom: 1rem;
+}
+
+.about-typewriter {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #e0f7fa;
+    opacity: 0.9;
+}
+
+.about-glass-tabs {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 0;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* Tab Bar - Fixed gap issues */
+.about-tabs {
+    display: flex;
+    gap: 0;
+    background: rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin: 0;
+    padding: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.about-tabs::-webkit-scrollbar {
+    display: none;
+}
+
+.about-tab {
+    flex: 1;
+    min-width: 140px;
+    padding: 1.2rem 1rem;
+    background: transparent;
+    border: none;
+    color: #b3e5fc;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    border-radius: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.about-tab:hover {
+    background: rgba(60, 187, 177, 0.1);
+    color: #3cbbb1;
+}
+
+.about-tab.active {
+    background: rgba(60, 187, 177, 0.2);
+    color: #3cbbb1;
+    border-bottom: 3px solid #3cbbb1;
+}
+
+.about-tab .card-icon {
+    font-size: 1.1rem;
+}
+
+/* Tab Content - No gap with tab bar */
+.about-tab-content {
+    padding: 2.5rem;
+    min-height: 400px;
+    background: rgba(255, 255, 255, 0.02);
+    margin: 0;
+    border-radius: 0 0 20px 20px;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .about-section {
+        padding: 2rem 1rem;
+    }
+
+    .about-profile {
+        flex-direction: column;
+        text-align: center;
+        gap: 1.5rem;
+        padding: 1.5rem;
+    }
+
+    .profile-img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .profile-intro h3 {
+        font-size: 1.5rem;
+    }
+
+    .about-typewriter {
+        font-size: 1rem;
+    }
+
+    .about-tabs {
+        flex-wrap: wrap;
+    }
+
+    .about-tab {
+        min-width: 120px;
+        padding: 1rem 0.75rem;
+        font-size: 0.9rem;
+    }
+
+    .about-tab-content {
+        padding: 1.5rem;
+        min-height: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-tab {
+        min-width: 100px;
+        padding: 0.8rem 0.5rem;
+        font-size: 0.8rem;
+    }
+
+    .about-tab .card-icon {
+        font-size: 1rem;
+    }
+
+    .about-tab-content {
+        padding: 1rem;
+    }
+}
