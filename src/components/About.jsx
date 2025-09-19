@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { profileData, aboutData } from "../data/portfolioData";
-import { useScrollAnimation, useTypewriter } from "../hooks/useAnimations";
+import { useScrollAnimation } from "../hooks/useAnimations";
 import Timeline from "./Timeline";
 import Skills from "./Skills";
 import Education from "./Education";
@@ -11,12 +11,72 @@ const About = () => {
   const [activeTab, setActiveTab] = useState("experience");
   const [profileRef, profileVisible] = useScrollAnimation({ threshold: 0.3 });
 
-  // Typewriter effect for the about text
-  const { displayText, showCursor } = useTypewriter(
-    profileData.typewriterText,
-    50,
-    1000
-  );
+  // Typewriter state
+  const typewriterRef = useRef(null);
+  const [isTypewriterVisible, setIsTypewriterVisible] = useState(false);
+  const [displayText, setDisplayText] = useState("");
+  const [showCursor, setShowCursor] = useState(false);
+
+  // Intersection observer for typewriter - same pattern as timeline
+  useEffect(() => {
+    const element = typewriterRef.current;
+    if (!element) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsTypewriterVisible(true);
+          } else {
+            // Reset when out of view for re-animation
+            setIsTypewriterVisible(false);
+            setDisplayText("");
+            setShowCursor(false);
+          }
+        });
+      },
+      {
+        threshold: 0.3,
+        rootMargin: "0px 0px -50px 0px",
+      }
+    );
+
+    observer.observe(element);
+    return () => observer.unobserve(element);
+  }, []);
+
+  // Typewriter effect when visible
+  useEffect(() => {
+    if (!isTypewriterVisible || !profileData.typewriterText) return;
+
+    let timeoutId;
+    let currentIndex = 0;
+    const text = profileData.typewriterText;
+
+    // Reset
+    setDisplayText("");
+    setShowCursor(true);
+
+    const typeNextChar = () => {
+      if (currentIndex < text.length) {
+        setDisplayText(text.slice(0, currentIndex + 1));
+        currentIndex++;
+        timeoutId = setTimeout(typeNextChar, 25); // Fast typing
+      } else {
+        // Keep cursor for a bit then hide
+        timeoutId = setTimeout(() => setShowCursor(false), 1000);
+      }
+    };
+
+    // Start typing immediately
+    typeNextChar();
+
+    return () => {
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+    };
+  }, [isTypewriterVisible]);
 
   const handleTabClick = (tabId) => {
     setActiveTab(tabId);
@@ -52,7 +112,7 @@ const About = () => {
         />
         <div className="profile-intro">
           <h3>Hi, I'm {profileData.name}.</h3>
-          <p className="about-typewriter">
+          <p className="about-typewriter" ref={typewriterRef}>
             {displayText}
             {showCursor && <span className="caret">|</span>}
           </p>

@@ -43,31 +43,46 @@ export const useScrollAnimation = (options = {}) => {
     return [ref, isVisible];
 };
 
-// Custom hook for typewriter effect
+// Custom hook for typewriter effect with scroll reset
 export const useTypewriter = (text, speed = 50, startDelay = 0) => {
     const [displayText, setDisplayText] = useState('');
     const [isTyping, setIsTyping] = useState(false);
     const [showCursor, setShowCursor] = useState(false);
+    const [shouldRestart, setShouldRestart] = useState(0);
 
     useEffect(() => {
         if (!text) return;
 
         let timeoutId;
         let currentIndex = 0;
+        let isCancelled = false;
+
+        // Always reset when effect runs
+        setDisplayText('');
+        setIsTyping(false);
+        setShowCursor(false);
 
         const startTyping = () => {
+            if (isCancelled) return;
+
             setIsTyping(true);
             setShowCursor(true);
 
             const typeNextChar = () => {
+                if (isCancelled) return;
+
                 if (currentIndex < text.length) {
                     setDisplayText(text.slice(0, currentIndex + 1));
                     currentIndex++;
                     timeoutId = setTimeout(typeNextChar, speed);
                 } else {
                     setIsTyping(false);
-                    // Keep cursor blinking for a while after typing is done
-                    setTimeout(() => setShowCursor(false), 2000);
+                    // Keep cursor blinking briefly after typing is done
+                    timeoutId = setTimeout(() => {
+                        if (!isCancelled) {
+                            setShowCursor(false);
+                        }
+                    }, 1000);
                 }
             };
 
@@ -77,13 +92,39 @@ export const useTypewriter = (text, speed = 50, startDelay = 0) => {
         timeoutId = setTimeout(startTyping, startDelay);
 
         return () => {
+            isCancelled = true;
             if (timeoutId) {
                 clearTimeout(timeoutId);
             }
         };
-    }, [text, speed, startDelay]);
+    }, [text, speed, startDelay, shouldRestart]);
 
-    return { displayText, isTyping, showCursor };
+    // Function to restart the typewriter effect
+    const restart = () => {
+        setShouldRestart(prev => prev + 1);
+    };
+
+    return { displayText, isTyping, showCursor, restart };
+};
+
+// Custom hook for typewriter effect with scroll detection
+export const useScrollTypewriter = (text, speed = 50, startDelay = 0, options = {}) => {
+    const [ref, isVisible] = useScrollAnimation({
+        once: false, // Allow retriggering
+        threshold: 0.1, // Very low threshold for better detection
+        rootMargin: '50px 0px -50px 0px', // Start earlier, stop later
+        ...options
+    });
+    const { displayText, isTyping, showCursor, restart } = useTypewriter(text, speed, startDelay);
+
+    useEffect(() => {
+        if (isVisible) {
+            // Immediately restart when coming into view
+            restart();
+        }
+    }, [isVisible, restart]);
+
+    return { ref, displayText, isTyping, showCursor };
 };
 
 // Custom hook for smooth scroll to element

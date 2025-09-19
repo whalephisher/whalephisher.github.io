@@ -1,18 +1,77 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { profileData } from "../data/portfolioData";
-import { useTypewriter } from "../hooks/useAnimations";
 import "./Hero.css";
 
 const Hero = () => {
   const heroRef = useRef(null);
   const circlesRef = useRef([]);
 
-  // Typewriter effect for the description
-  const { displayText, showCursor } = useTypewriter(
-    profileData.description,
-    50,
-    1500 // Start after title animation
-  );
+  // Typewriter state
+  const typewriterRef = useRef(null);
+  const [isTypewriterVisible, setIsTypewriterVisible] = useState(false);
+  const [displayText, setDisplayText] = useState("");
+  const [showCursor, setShowCursor] = useState(false);
+
+  // Intersection observer for typewriter - same pattern as timeline
+  useEffect(() => {
+    const element = typewriterRef.current;
+    if (!element) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsTypewriterVisible(true);
+          } else {
+            // Reset when out of view for re-animation
+            setIsTypewriterVisible(false);
+            setDisplayText("");
+            setShowCursor(false);
+          }
+        });
+      },
+      {
+        threshold: 0.3,
+        rootMargin: "0px 0px -50px 0px",
+      }
+    );
+
+    observer.observe(element);
+    return () => observer.unobserve(element);
+  }, []);
+
+  // Typewriter effect when visible
+  useEffect(() => {
+    if (!isTypewriterVisible || !profileData.description) return;
+
+    let timeoutId;
+    let currentIndex = 0;
+    const text = profileData.description;
+
+    // Reset
+    setDisplayText("");
+    setShowCursor(true);
+
+    const typeNextChar = () => {
+      if (currentIndex < text.length) {
+        setDisplayText(text.slice(0, currentIndex + 1));
+        currentIndex++;
+        timeoutId = setTimeout(typeNextChar, 50); // Hero typing speed
+      } else {
+        // Keep cursor for a bit then hide
+        timeoutId = setTimeout(() => setShowCursor(false), 1000);
+      }
+    };
+
+    // Start typing immediately
+    typeNextChar();
+
+    return () => {
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+    };
+  }, [isTypewriterVisible]);
 
   useEffect(() => {
     const hero = heroRef.current;
@@ -114,7 +173,7 @@ const Hero = () => {
         ></div>
         <div
           ref={(el) => (circlesRef.current[1] = el)}
-          className="parallax-circle circle-md circle-pos-2 circle-blue"
+          className="parallax-circle circle-md circle-pos-2 circle-blue circle-star-beam"
         ></div>
         <div
           ref={(el) => (circlesRef.current[2] = el)}
@@ -123,7 +182,7 @@ const Hero = () => {
       </div>
       <div className="hero-content">
         <h1 className="hero-title animated">{profileData.title}</h1>
-        <p className="hero-desc hero-typewriter">
+        <p className="hero-desc hero-typewriter" ref={typewriterRef}>
           {displayText}
           {showCursor && <span className="caret">|</span>}
         </p>
