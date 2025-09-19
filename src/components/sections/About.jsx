@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
-import { profileData, aboutData } from "../data/portfolioData";
-import { useScrollAnimation } from "../hooks/useAnimations";
-import Timeline from "./Timeline";
-import Skills from "./Skills";
-import Education from "./Education";
-import Interests from "./Interests";
+import { profileData, aboutData } from "../../data/portfolioData";
+import { useScrollAnimation } from "../../hooks/useAnimations";
+import Timeline from "../ui/Timeline";
+import Skills from "../ui/Skills";
+import Education from "../ui/Education";
+import Interests from "../ui/Interests";
 import "./About.css";
 
 const About = () => {

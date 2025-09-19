@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { navigationData } from "../data/portfolioData";
-import { useSmoothScroll } from "../hooks/useAnimations";
-import { RippleEffect } from "./InteractiveEffects";
+import { navigationData } from "../../data/portfolioData";
+import { useSmoothScroll } from "../../hooks/useAnimations";
+import { RippleEffect } from "../effects/InteractiveEffects";
 import "./Navbar.css";
 
 const Navbar = () => {

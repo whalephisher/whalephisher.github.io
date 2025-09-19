@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { skillsData } from "../data/portfolioData";
+import { skillsData } from "../../data/portfolioData";
 import "./Skills.css";
 
 const Skills = () => {

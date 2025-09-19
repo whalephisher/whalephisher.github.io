@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { interestsData } from "../data/portfolioData";
+import { interestsData } from "../../data/portfolioData";
 import "./Interests.css";
 
 const Interests = () => {

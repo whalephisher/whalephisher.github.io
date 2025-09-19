@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { profileData } from "../data/portfolioData";
+import { profileData } from "../../data/portfolioData";
 import "./Hero.css";
 
 const Hero = () => {

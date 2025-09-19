@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { experienceData } from "../data/portfolioData";
+import { experienceData } from "../../data/portfolioData";
 import "./Timeline.css";
 
 const Timeline = () => {
