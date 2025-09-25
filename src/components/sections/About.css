@@ -114,6 +114,23 @@
     margin: 0;
     border-radius: 0 0 20px 20px;
     overflow: hidden;
+    position: relative;
+}
+
+/* Skills and Interests tabs take full container */
+.about-tab-content:has(.skills-container),
+.about-tab-content:has(.interests-container) {
+    padding: 0;
+    background: transparent;
+    border-radius: 0;
+    min-height: 500px;
+}
+
+/* Fallback for browsers without :has() support */
+.about-tab-content .skills-container,
+.about-tab-content .interests-container {
+    width: 100%;
+    margin: 0;
 }
 
 .tab-content-wrapper {

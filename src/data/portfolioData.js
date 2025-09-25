@@ -12,7 +12,7 @@ export const navigationData = {
     logo: "Whalephisher",
     links: [
         { href: "#about", label: "About" },
-        { href: "#work", label: "Work" }
+        { href: "#work", label: "Projects" }
     ],
     socialLinks: [
         { href: "https://www.youtube.com/@HeadbandTrekker", icon: "/youtube.svg", alt: "YouTube" },
@@ -98,16 +98,33 @@ export const experienceData = {
     ]
 };
 
-export const skillsData = [
-    "Python", "Java", "JavaScript", "SQL", "C/C++", "Bash", "PowerShell",
-    "HTML/CSS", "React.js", "Django", "FastAPI", "AG Grid", "Power Apps",
-    "Pandas", "SQLAlchemy", "Docker", "Git/GitHub", "GitHub Actions (CI/CD)",
-    "Unit Testing (PyTest)", "Agile/Scrum", "ETL/ELT Pipelines",
-    "Data Modeling & Warehousing", "BigQuery", "SQL Server", "PostgreSQL",
-    "MySQL", "MongoDB", "Power BI (DAX, Power Query)", "Tableau", "Excel",
-    "Data Visualization", "Secure Coding Practices", "Vulnerability Analysis",
-    "Wireshark", "Metasploit", "Nmap", "Ghidra", "IDA Pro", "Linux/Unix Systems"
-];
+export const skillsData = {
+    "Programming Languages": {
+        icon: "💻",
+        color: "rgba(102, 126, 234, 0.3)",
+        skills: ["Python", "Java", "JavaScript", "SQL", "C/C++", "Bash", "PowerShell"]
+    },
+    "Web Development": {
+        icon: "🌐",
+        color: "rgba(34, 197, 94, 0.3)",
+        skills: ["HTML/CSS", "React.js", "Django", "FastAPI", "AG Grid", "Power Apps"]
+    },
+    "Data & Analytics": {
+        icon: "📊",
+        color: "rgba(251, 146, 60, 0.3)",
+        skills: ["Pandas", "SQLAlchemy", "ETL/ELT Pipelines", "Data Modeling & Warehousing", "BigQuery", "SQL Server", "PostgreSQL", "MySQL", "MongoDB", "Power BI (DAX, Power Query)", "Tableau", "Excel", "Data Visualization"]
+    },
+    "DevOps & Tools": {
+        icon: "🔧",
+        color: "rgba(139, 69, 19, 0.3)",
+        skills: ["Docker", "Git/GitHub", "GitHub Actions (CI/CD)", "Unit Testing (PyTest)", "Agile/Scrum"]
+    },
+    "Security & Systems": {
+        icon: "🔒",
+        color: "rgba(239, 68, 68, 0.3)",
+        skills: ["Secure Coding Practices", "Vulnerability Analysis", "Wireshark", "Metasploit", "Nmap", "Ghidra", "IDA Pro", "Linux/Unix Systems"]
+    }
+};
 
 export const educationData = {
     degree: {
@@ -182,11 +199,28 @@ export const educationData = {
     }
 };
 
-export const interestsData = [
-    "Tech Innovation", "Acoustic Guitar", "Electric Guitar", "Hiking",
-    "Running", "Snorkeling", "Basketball", "Football", "Spikeball",
-    "Pickleball", "Video Editing", "Traveling"
-];
+export const interestsData = {
+    "Tech & Creative": {
+        icon: "💻",
+        color: "rgba(102, 126, 234, 0.2)",
+        interests: ["Tech Innovation", "Video Editing"]
+    },
+    "Music & Arts": {
+        icon: "🎵",
+        color: "rgba(139, 69, 19, 0.2)",
+        interests: ["Acoustic Guitar", "Electric Guitar"]
+    },
+    "Outdoor & Adventure": {
+        icon: "🏔️",
+        color: "rgba(34, 197, 94, 0.2)",
+        interests: ["Hiking", "Running", "Snorkeling", "Traveling"]
+    },
+    "Sports & Games": {
+        icon: "⚽",
+        color: "rgba(251, 146, 60, 0.2)",
+        interests: ["Basketball", "Football", "Spikeball", "Pickleball"]
+    }
+};
 
 export const portfolioData = [
     {
