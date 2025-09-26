@@ -113,16 +113,14 @@ const Timeline = () => {
       }
     );
 
-    // Observe all timeline items
+    // Observe all timeline items and success section
     items.forEach((item, index) => {
       item.dataset.index = index;
       observer.observe(item);
     });
 
     // Also observe the success section if it exists
-    const successSection = timelineRef.current?.querySelector(
-      ".ctf-success-section"
-    );
+    const successSection = timelineRef.current?.querySelector(".ctf-success-section");
     if (successSection) {
       successSection.dataset.index = displayedExperiences.length;
       observer.observe(successSection);
@@ -145,7 +143,7 @@ const Timeline = () => {
 
   // Effect to handle timeline item animations
   useEffect(() => {
-    const items = timelineRef.current?.querySelectorAll(".timeline-item");
+    const items = timelineRef.current?.querySelectorAll(".timeline-item, .ctf-success-section");
     if (!items) return;
 
     // Animate visible items
