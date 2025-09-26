@@ -873,7 +873,7 @@
 .success-dot {
     background: linear-gradient(135deg, #3cbbb1, #00a67e);
     box-shadow: 0 0 20px rgba(60, 187, 177, 0.8),
-                0 0 40px rgba(60, 187, 177, 0.4);
+        0 0 40px rgba(60, 187, 177, 0.4);
     animation: successGlow 2s ease-in-out infinite alternate;
     position: absolute;
     left: 50%;
@@ -883,22 +883,23 @@
 @keyframes successGlow {
     0% {
         box-shadow: 0 0 20px rgba(60, 187, 177, 0.8),
-                    0 0 40px rgba(60, 187, 177, 0.4);
+            0 0 40px rgba(60, 187, 177, 0.4);
         transform: translateX(-50%) scale(1);
     }
+
     100% {
         box-shadow: 0 0 30px rgba(60, 187, 177, 1),
-                    0 0 60px rgba(60, 187, 177, 0.6),
-                    0 0 80px rgba(60, 187, 177, 0.3);
+            0 0 60px rgba(60, 187, 177, 0.6),
+            0 0 80px rgba(60, 187, 177, 0.3);
         transform: translateX(-50%) scale(1.1);
     }
 }
 
 .success-content {
-    background: linear-gradient(135deg, 
-        rgba(60, 187, 177, 0.15) 0%, 
-        rgba(0, 166, 126, 0.1) 50%,
-        rgba(60, 187, 177, 0.05) 100%);
+    background: linear-gradient(135deg,
+            rgba(60, 187, 177, 0.15) 0%,
+            rgba(0, 166, 126, 0.1) 50%,
+            rgba(60, 187, 177, 0.05) 100%);
     border: 2px solid rgba(60, 187, 177, 0.4);
     box-shadow: 0 8px 32px rgba(60, 187, 177, 0.2);
     transition: all 0.3s ease;
@@ -906,10 +907,10 @@
 }
 
 .success-content:hover {
-    background: linear-gradient(135deg, 
-        rgba(60, 187, 177, 0.2) 0%, 
-        rgba(0, 166, 126, 0.15) 50%,
-        rgba(60, 187, 177, 0.1) 100%);
+    background: linear-gradient(135deg,
+            rgba(60, 187, 177, 0.2) 0%,
+            rgba(0, 166, 126, 0.15) 50%,
+            rgba(60, 187, 177, 0.1) 100%);
     border-color: rgba(60, 187, 177, 0.6);
     box-shadow: 0 12px 40px rgba(60, 187, 177, 0.3);
     transform: translateY(-2px);
@@ -951,4 +952,3 @@
     font-size: 0.9rem;
     line-height: 1.4;
 }
-
