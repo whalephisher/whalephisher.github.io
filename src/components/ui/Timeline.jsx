@@ -123,7 +123,7 @@ const Timeline = () => {
     const successSection = timelineRef.current?.querySelector(
       ".ctf-success-section"
     );
-    if (successSection && ctfSolved) {
+    if (successSection) {
       successSection.dataset.index = displayedExperiences.length;
       observer.observe(successSection);
     }
@@ -152,18 +152,31 @@ const Timeline = () => {
     items.forEach((item, i) => {
       const isVisible = visibleItems.has(i);
       const isEven = i % 2 === 0;
+      
+      // Special handling for success section
+      const isSuccessSection = item.classList.contains('ctf-success-section');
 
       if (isVisible) {
         item.style.opacity = "1";
         item.style.transform = "translateX(0) scale(1)";
         item.style.transition =
           "all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
+        
+        // Add visible class for success section
+        if (isSuccessSection) {
+          item.classList.add('visible');
+        }
       } else {
         item.style.opacity = "0";
         item.style.transform = `translateX(${
           isEven ? "-80px" : "80px"
         }) scale(0.8)`;
         item.style.transition = "all 0.4s ease-out";
+        
+        // Remove visible class for success section
+        if (isSuccessSection) {
+          item.classList.remove('visible');
+        }
       }
     });
   }, [visibleItems]);
@@ -297,11 +310,11 @@ const Timeline = () => {
                 <div className="ctf-prompt">
                   <div className="ctf-header">
                     <div className="ctf-title">
-                      🔒 More Experiences Available
+                                            🔒 Additional Experience Available
                     </div>
                   </div>
                   <div className="ctf-description">
-                    Additional experiences are locked behind a mini challenge
+                                        Additional work history is locked behind a mini challenge
                   </div>
                   <button
                     className="ctf-start-btn"
@@ -399,13 +412,13 @@ const Timeline = () => {
             >
               <div className="success-title">
                 {showFullTimeline
-                  ? "Show Only Relevant Experience"
-                  : "Show All Experiences"}
+                  ? "Show Tech-Focused Experience"
+                  : "Show Complete Work History"}
               </div>
               <div className="success-message">
                 {showFullTimeline
                   ? "Click to show only current tech-focused roles"
-                  : "Click to view the entire work timeline"}
+                  : "Click to view the complete work history including all roles"}
               </div>
             </div>
           </div>
