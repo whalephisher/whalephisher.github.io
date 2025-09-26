@@ -86,6 +86,10 @@ const Interests = () => {
                   className="card-icon"
                   style={{
                     "--icon-index": categoryIndex,
+                    "--jiggle-delay": `${
+                      categoryIndex * 0.7 + Math.random() * 0.5
+                    }s`,
+                    "--jiggle-duration": `${2 + Math.random() * 1.5}s`,
                   }}
                 >
                   {categoryData.icon}
