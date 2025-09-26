@@ -120,7 +120,9 @@ const Timeline = () => {
     });
 
     // Also observe the success section if it exists
-    const successSection = timelineRef.current?.querySelector(".ctf-success-section");
+    const successSection = timelineRef.current?.querySelector(
+      ".ctf-success-section"
+    );
     if (successSection) {
       successSection.dataset.index = displayedExperiences.length;
       observer.observe(successSection);
@@ -143,26 +145,28 @@ const Timeline = () => {
 
   // Effect to handle timeline item animations
   useEffect(() => {
-    const items = timelineRef.current?.querySelectorAll(".timeline-item, .ctf-success-section");
+    const items = timelineRef.current?.querySelectorAll(
+      ".timeline-item, .ctf-success-section"
+    );
     if (!items) return;
 
     // Animate visible items
     items.forEach((item, i) => {
       const isVisible = visibleItems.has(i);
       const isEven = i % 2 === 0;
-      
+
       // Special handling for success section
-      const isSuccessSection = item.classList.contains('ctf-success-section');
+      const isSuccessSection = item.classList.contains("ctf-success-section");
 
       if (isVisible) {
         item.style.opacity = "1";
         item.style.transform = "translateX(0) scale(1)";
         item.style.transition =
           "all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
-        
+
         // Add visible class for success section
         if (isSuccessSection) {
-          item.classList.add('visible');
+          item.classList.add("visible");
         }
       } else {
         item.style.opacity = "0";
@@ -170,10 +174,10 @@ const Timeline = () => {
           isEven ? "-80px" : "80px"
         }) scale(0.8)`;
         item.style.transition = "all 0.4s ease-out";
-        
+
         // Remove visible class for success section
         if (isSuccessSection) {
-          item.classList.remove('visible');
+          item.classList.remove("visible");
         }
       }
     });
@@ -308,11 +312,11 @@ const Timeline = () => {
                 <div className="ctf-prompt">
                   <div className="ctf-header">
                     <div className="ctf-title">
-                                            🔒 Additional Experience Available
+                      🔒 Additional Experience Available
                     </div>
                   </div>
                   <div className="ctf-description">
-                                        Additional work history is locked behind a mini challenge
+                    Additional work history is locked behind a mini challenge
                   </div>
                   <button
                     className="ctf-start-btn"
