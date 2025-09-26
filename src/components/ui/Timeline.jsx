@@ -299,17 +299,9 @@ const Timeline = () => {
                     <div className="ctf-title">
                       🔒 More Experiences Available
                     </div>
-                    <div className="ctf-subtitle">
-                      Additional experiences are locked behind a mini challenge
-                    </div>
                   </div>
                   <div className="ctf-description">
-                    Want to see my full professional timeline?
-                    <br />
-                    <small>
-                      Note: The visible experiences above show my current
-                      tech-focused roles
-                    </small>
+                    Additional experiences are locked behind a mini challenge
                   </div>
                   <button
                     className="ctf-start-btn"
@@ -413,7 +405,7 @@ const Timeline = () => {
               <div className="success-message">
                 {showFullTimeline
                   ? "Click to show only current tech-focused roles"
-                  : "Click to view the complete professional timeline"}
+                  : "Click to view the entire work timeline"}
               </div>
             </div>
           </div>
