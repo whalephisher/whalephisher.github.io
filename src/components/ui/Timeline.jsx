@@ -302,12 +302,14 @@ const Timeline = () => {
         {/* CTF Challenge Section */}
         {!showFullTimeline && !ctfSolved && (
           <div
-            className={`ctf-unlock-section ${
+            className={`timeline-item ctf-unlock-section ${
               showCtfChallenge ? "challenge-active" : ""
+            } ${
+              visibleItems.has(displayedExperiences.length) ? "visible" : ""
             }`}
+            data-index={displayedExperiences.length}
           >
-            {!showCtfChallenge && <div className="timeline-dot ctf-dot"></div>}
-            <div className="ctf-content">
+            <div className="timeline-content ctf-content">
               {!showCtfChallenge ? (
                 <div className="ctf-prompt">
                   <div className="ctf-header">
@@ -395,7 +397,7 @@ const Timeline = () => {
           >
             <div className="timeline-dot success-dot"></div>
             <div
-              className="success-content timeline-content"
+              className="success-content timeline-content clickable"
               onClick={() => {
                 // Immediate scroll before state change to prevent jump
                 const aboutSection = document.querySelector(".about-section");
@@ -412,10 +414,16 @@ const Timeline = () => {
                 }, 50);
               }}
             >
-              <div className="success-title">
-                {showFullTimeline
-                  ? "Show Tech-Focused Experience"
-                  : "Show Complete Work History"}
+              <div className="success-header">
+                <span className="success-icon">
+                  {showFullTimeline ? "🎯" : "🔓"}
+                </span>
+                <span className="success-title">
+                  {showFullTimeline
+                    ? "Show Tech-Focused Experience"
+                    : "Show Complete Work History"}
+                </span>
+                <span className="timeline-click-hint success-hint">⇄</span>
               </div>
               <div className="success-message">
                 {showFullTimeline
