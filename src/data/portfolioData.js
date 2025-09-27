@@ -76,7 +76,7 @@ export const experienceData = {
     ctfChallenge: {
         // SHA-256 hash of the correct solution (lowercase)
         solutionHash: "4c28b4c2597d7488376da70b90e693ffee4a3187209370ee7985e50776fd29a6",
-        cipher: "YXJ5eXNmYW4=", // Display cipher 
+        cipher: "YXJ5eXZmem5h=", // Display cipher 
         hint: "This looks like Base64... but there might be another layer. Think about simple ciphers used in CTFs. What comes after decoding?",
 
         // Validation function
