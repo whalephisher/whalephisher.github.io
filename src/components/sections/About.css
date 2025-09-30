@@ -62,19 +62,32 @@
     margin: 0;
     padding: 0;
     overflow-x: auto;
-    scrollbar-width: none;
+    overflow-y: hidden;
+    white-space: nowrap;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(60, 187, 177, 0.4) transparent;
     -ms-overflow-style: none;
     opacity: 1;
     visibility: visible;
 }
 
 .about-tabs::-webkit-scrollbar {
-    display: none;
+    height: 4px;
+}
+
+.about-tabs::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.about-tabs::-webkit-scrollbar-thumb {
+    background: rgba(60, 187, 177, 0.5);
+    border-radius: 2px;
 }
 
 .about-tab {
-    flex: 1;
-    min-width: 140px;
+    flex: 0 0 135px;
+    /* slightly smaller so more fit before scroll */
+    min-width: 135px;
     padding: 1.2rem 1rem;
     background: transparent;
     border: none;
@@ -89,6 +102,73 @@
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
+}
+
+/* Force single row tabs on mobile */
+@media (max-width: 768px) {
+    .about-tabs {
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        overflow-x: auto;
+        overflow-y: hidden;
+        gap: 0;
+        scrollbar-width: thin;
+        scrollbar-color: rgba(60, 187, 177, 0.5) transparent;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 2px;
+        height: 75px !important;
+        width: 100%;
+    }
+
+    .about-tabs::-webkit-scrollbar {
+        height: 3px;
+    }
+
+    .about-tabs::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.05);
+    }
+
+    .about-tabs::-webkit-scrollbar-thumb {
+        background: rgba(60, 187, 177, 0.5);
+        border-radius: 2px;
+    }
+
+    .about-tab {
+        flex: 0 0 auto !important;
+        min-width: 120px !important;
+        max-width: 120px !important;
+        width: 120px !important;
+        padding: 0.9rem 0.5rem !important;
+        font-size: 0.95rem !important;
+        border-right: 1px solid rgba(255, 255, 255, 0.1);
+        white-space: nowrap;
+        text-align: center;
+        height: 75px !important;
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 0.3rem;
+    }
+
+    .about-tab:last-child {
+        border-right: none;
+    }
+
+    .about-tab .card-icon {
+        font-size: 1.2rem !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-tab {
+        padding: 0.8rem 0.5rem;
+        font-size: 0.8rem;
+    }
+
+    .about-tab .card-icon {
+        font-size: 1rem;
+    }
 }
 
 .about-tab:hover {
@@ -190,16 +270,25 @@
 
 @media (max-width: 480px) {
     .about-tab {
-        min-width: 100px;
-        padding: 0.8rem 0.5rem;
-        font-size: 0.8rem;
+        min-width: 95px !important;
+        max-width: 95px !important;
+        width: 95px !important;
+        padding: 0.8rem 0.4rem !important;
+        font-size: 0.85rem !important;
+        flex-direction: column;
+        gap: 0.2rem;
+        height: 65px !important;
     }
 
     .about-tab .card-icon {
-        font-size: 1rem;
+        font-size: 1.1rem !important;
     }
 
     .about-tab-content {
-        padding: 1rem;
+        padding: 0.8rem;
+    }
+
+    .about-tabs {
+        height: 65px !important;
     }
 }

@@ -40,7 +40,7 @@ const Skills = () => {
       }}
     >
       <div className="ubuntu-terminal-header">
-        <div className="terminal-title">gabriel@portfolio:~/skills</div>
+        <div className="terminal-title">whalephisher@portfolio:~/skills</div>
       </div>
 
       <div className="terminal-content">
@@ -60,14 +60,15 @@ const Skills = () => {
             >
               <div className="terminal-session">
                 <div className="terminal-command-line">
-                  <span className="prompt-user">gabriel@portfolio</span>
-                  <span className="prompt-separator">:</span>
-                  <span className="prompt-path">~/skills</span>
-                  <span className="prompt-symbol">$</span>
-                  <span className="command-text">
+                  <div className="terminal-prompt-line">
+                    <span className="prompt-user">whalephisher@portfolio</span>
+                    <span className="prompt-separator">:</span>
+                    <span className="prompt-path">~/skills</span>
+                    <span className="prompt-symbol">$</span>
+                  </div>
+                  <div className="command-text">
                     ls -la ./{categoryName.toLowerCase().replace(/\s+/g, "_")}/
-                    --color=always
-                  </span>
+                  </div>
                 </div>
 
                 <div className="terminal-category-content">
@@ -81,10 +82,10 @@ const Skills = () => {
                         }}
                       >
                         <span className="file-permissions">-rwxr-xr-x</span>
-                        <span className="file-owner">gabriel</span>
+                        <span className="file-owner">whalephisher</span>
                         <span className="file-group">dev</span>
                         <span className="file-size">
-                          {(skill.length * 0.5 + 1).toFixed(1)}K
+                          {Math.floor(skill.length / 2) + 1}K
                         </span>
                         <span className="file-date">
                           Sep 24 {new Date().getFullYear()}

@@ -104,8 +104,8 @@
 @media (max-width: 768px) {
     .hero {
         padding: 0 1rem;
-        min-height: 40vh;
-        /* Much smaller hero section on mobile */
+        min-height: 95vh;
+        /* Increased hero section height significantly for better mobile presence */
         display: flex;
         align-items: center;
         justify-content: center;
@@ -137,6 +137,11 @@
 }
 
 @media (max-width: 480px) {
+    .hero {
+        min-height: 90vh;
+        /* Increase height for small screens too */
+    }
+
     .hero-title {
         font-size: 2rem;
     }
