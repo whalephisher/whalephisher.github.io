@@ -85,8 +85,8 @@
 }
 
 .about-tab {
-    flex: 0 0 135px;
-    /* slightly smaller so more fit before scroll */
+    flex: 1;
+    /* Take equal space on desktop */
     min-width: 135px;
     padding: 1.2rem 1rem;
     background: transparent;
@@ -135,6 +135,7 @@
 
     .about-tab {
         flex: 0 0 auto !important;
+        /* Override desktop flex: 1 */
         min-width: 120px !important;
         max-width: 120px !important;
         width: 120px !important;
