@@ -181,11 +181,3 @@ The site is configured for GitHub Pages deployment:
 npm run build
 npm run deploy
 ```
-
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
-
----
-
-Built with ❤️ using React, Vite, and modern web technologies.
