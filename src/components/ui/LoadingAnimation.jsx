@@ -9,7 +9,7 @@ const LoadingAnimation = ({
   children,
 }) => {
   const [showContent, setShowContent] = useState(false);
-  const { elementRef, isVisible } = useScrollAnimation();
+  const [elementRef, isVisible] = useScrollAnimation();
 
   useEffect(() => {
     if (!isLoading) {

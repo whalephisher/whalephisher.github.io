@@ -108,8 +108,10 @@ const Hero = () => {
       const vx = Math.cos(angle) * speed;
       const vy = Math.sin(angle) * speed;
 
-      circle.style.left = `${x}px`;
-      circle.style.top = `${y}px`;
+      circle.style.left = `0px`;
+      circle.style.top = `0px`;
+      circle.style.transform = `translate(${x}px, ${y}px)`;
+      circle.style.willChange = 'transform';
 
       circleStates.push({ circle, x, y, vx, vy, cw, ch });
     });
@@ -148,8 +150,7 @@ const Hero = () => {
           state.vy = -Math.abs(state.vy);
         }
 
-        state.circle.style.left = `${state.x}px`;
-        state.circle.style.top = `${state.y}px`;
+        state.circle.style.transform = `translate(${state.x}px, ${state.y}px)`;
       });
 
       animationId = requestAnimationFrame(animateCircles);

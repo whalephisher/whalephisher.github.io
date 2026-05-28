@@ -36,8 +36,8 @@ const ParticleSystem = ({ particleCount = 30, className = "" }) => {
 
       particle.style.cssText = `
         position: fixed;
-        left: ${x}px;
-        top: ${y}px;
+        left: 0;
+        top: 0;
         width: ${size}px;
         height: ${size}px;
         background: ${colors[Math.floor(Math.random() * colors.length)]};
@@ -45,6 +45,8 @@ const ParticleSystem = ({ particleCount = 30, className = "" }) => {
         pointer-events: none;
         z-index: 0;
         opacity: 0;
+        will-change: transform, opacity;
+        transform: translate(${x}px, ${y}px);
         animation: particleFadeIn 2s ease-in-out forwards;
         animation-delay: ${Math.random() * 2}s;
       `;
@@ -68,7 +70,6 @@ const ParticleSystem = ({ particleCount = 30, className = "" }) => {
       frame++;
 
       particlesRef.current.forEach((particle, index) => {
-        // Update position
         particle.x += particle.vx;
         particle.y += particle.vy;
 
@@ -81,14 +82,12 @@ const ParticleSystem = ({ particleCount = 30, className = "" }) => {
         // Apply floating motion
         particle.y += Math.sin((frame + index) * 0.01) * 0.2;
 
-        // Update DOM element
-        particle.element.style.left = particle.x + "px";
-        particle.element.style.top = particle.y + "px";
+        // Use transform instead of left/top to avoid layout thrashing
+        particle.element.style.transform = `translate(${particle.x}px, ${particle.y}px)`;
 
-        // Twinkle effect
-        if (frame % 60 === 0) {
-          const opacity = Math.random() * 0.5 + 0.2;
-          particle.element.style.opacity = opacity;
+        // Twinkle effect (less frequent to reduce style recalcs)
+        if (frame % 90 === index % 90) {
+          particle.element.style.opacity = Math.random() * 0.5 + 0.2;
         }
       });
 

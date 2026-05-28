@@ -14,7 +14,6 @@ export const useScrollAnimation = (options = {}) => {
             ([entry]) => {
                 if (entry.isIntersecting) {
                     setIsVisible(true);
-                    // Once visible, we can optionally stop observing
                     if (once !== false) {
                         observer.unobserve(entry.target);
                     }
@@ -25,7 +24,6 @@ export const useScrollAnimation = (options = {}) => {
             {
                 threshold,
                 rootMargin,
-                ...options
             }
         );
 
@@ -38,7 +36,7 @@ export const useScrollAnimation = (options = {}) => {
                 observer.unobserve(element);
             }
         };
-    }, [threshold, rootMargin, once, options]);
+    }, [threshold, rootMargin, once]);
 
     return [ref, isVisible];
 };
@@ -107,26 +105,6 @@ export const useTypewriter = (text, speed = 50, startDelay = 0) => {
     return { displayText, isTyping, showCursor, restart };
 };
 
-// Custom hook for typewriter effect with scroll detection
-export const useScrollTypewriter = (text, speed = 50, startDelay = 0, options = {}) => {
-    const [ref, isVisible] = useScrollAnimation({
-        once: false, // Allow retriggering
-        threshold: 0.1, // Very low threshold for better detection
-        rootMargin: '50px 0px -50px 0px', // Start earlier, stop later
-        ...options
-    });
-    const { displayText, isTyping, showCursor, restart } = useTypewriter(text, speed, startDelay);
-
-    useEffect(() => {
-        if (isVisible) {
-            // Immediately restart when coming into view
-            restart();
-        }
-    }, [isVisible, restart]);
-
-    return { ref, displayText, isTyping, showCursor };
-};
-
 // Custom hook for smooth scroll to element
 export const useSmoothScroll = () => {
     const scrollToElement = (elementId, offset = 0) => {
@@ -143,49 +121,4 @@ export const useSmoothScroll = () => {
     };
 
     return scrollToElement;
-};
-
-// Custom hook for mouse position tracking
-export const useMousePosition = () => {
-    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-
-    useEffect(() => {
-        const updateMousePosition = (e) => {
-            setMousePosition({ x: e.clientX, y: e.clientY });
-        };
-
-        window.addEventListener('mousemove', updateMousePosition);
-
-        return () => {
-            window.removeEventListener('mousemove', updateMousePosition);
-        };
-    }, []);
-
-    return mousePosition;
-};
-
-// Custom hook for parallax effect
-export const useParallax = (speed = 0.5) => {
-    const [offset, setOffset] = useState(0);
-    const ref = useRef(null);
-
-    useEffect(() => {
-        const handleScroll = () => {
-            if (ref.current) {
-                const scrolled = window.pageYOffset;
-                const elementTop = ref.current.getBoundingClientRect().top + scrolled;
-                const windowHeight = window.innerHeight;
-
-                // Only apply parallax when element is in view
-                if (scrolled + windowHeight > elementTop && scrolled < elementTop + ref.current.offsetHeight) {
-                    setOffset((scrolled - elementTop) * speed);
-                }
-            }
-        };
-
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, [speed]);
-
-    return [ref, offset];
 };

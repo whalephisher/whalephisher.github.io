@@ -358,7 +358,7 @@ const Timeline = () => {
                         type="text"
                         value={ctfInput}
                         onChange={(e) => setCtfInput(e.target.value)}
-                        onKeyPress={handleKeyPress}
+                        onKeyDown={handleKeyPress}
                         placeholder="Enter decoded message..."
                         className="ctf-input"
                         autoComplete="off"
