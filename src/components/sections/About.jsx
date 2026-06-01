@@ -10,6 +10,10 @@ import "./About.css";
 const About = () => {
   const [activeTab, setActiveTab] = useState("experience");
   const [profileRef, profileVisible] = useScrollAnimation({ threshold: 0.3 });
+  const profileImages = [profileData.profileImage, "/assets/profile2.jpeg", "/assets/whalephisher.png"];
+  const [imageIndex, setImageIndex] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const profileImgRef = useRef(null);
 
   // Typewriter state for the main heading
   const typewriterRef = useRef(null);
@@ -83,6 +87,24 @@ const About = () => {
     };
   }, [isTypewriterVisible]);
 
+  // Coin flip animation - swap profile image periodically
+  useEffect(() => {
+    const scheduleFlip = () => {
+      const delay = 6000 + Math.random() * 4000; // 6-10 seconds
+      return setTimeout(() => {
+        setIsAnimating(true);
+        // Swap image at midpoint (between 40-60% of 700ms = ~350ms)
+        setTimeout(() => setImageIndex((prev) => (prev + 1) % 3), 350);
+        // Remove animation class after it finishes
+        setTimeout(() => setIsAnimating(false), 700);
+        timerId = scheduleFlip();
+      }, delay);
+    };
+
+    let timerId = scheduleFlip();
+    return () => clearTimeout(timerId);
+  }, []);
+
   const handleTabClick = (tabId) => {
     setActiveTab(tabId);
   };
@@ -111,9 +133,10 @@ const About = () => {
         }`}
       >
         <img
-          src={profileData.profileImage}
+          ref={profileImgRef}
+          src={profileImages[imageIndex]}
           alt="Profile"
-          className="profile-img"
+          className={`profile-img${isAnimating ? " flipping" : ""}`}
         />
         <div className="profile-intro">
           <h3 className="about-typewriter" ref={typewriterRef}>
