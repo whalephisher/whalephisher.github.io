@@ -376,7 +376,7 @@ export const interestsData = {
     "Music & Arts": {
         icon: "🎵",
         color: "rgba(139, 69, 19, 0.2)",
-        interests: ["Acoustic Guitar", "Electric Guitar"]
+        interests: ["Acoustic Guitar", "Electric Guitar", "Bass Guitar", "Singing"]
     },
     "Outdoor & Adventure": {
         icon: "🏔️",
@@ -384,7 +384,7 @@ export const interestsData = {
         interests: ["Hiking", "Running", "Snorkeling", "Traveling"]
     },
     "Sports & Games": {
-        icon: "⚽",
+        icon: "🏀",
         color: "rgba(251, 146, 60, 0.2)",
         interests: ["Basketball", "Football", "Spikeball", "Pickleball"]
     }
