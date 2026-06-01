@@ -17,7 +17,8 @@ export const navigationData = {
     socialLinks: [
         { href: "https://www.youtube.com/@HeadbandTrekker", icon: "/youtube.svg", alt: "YouTube" },
         { href: "https://github.com/whalephisher/", icon: "/github.svg", alt: "GitHub" },
-        { href: "https://www.linkedin.com/in/gabriel-liau/", icon: "/linkedin.svg", alt: "LinkedIn" }
+        { href: "https://www.linkedin.com/in/gabriel-liau/", icon: "/linkedin.svg", alt: "LinkedIn" },
+        { href: "https://strava.app.link/EsRXPnmPC3b", icon: "/strava.svg", alt: "Strava" }
     ]
 };
 
