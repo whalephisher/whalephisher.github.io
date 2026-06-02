@@ -595,7 +595,7 @@
 
 /* Hyperspace animation */
 .hyperspace-active .star {
-    animation: hyperJump 1.2s ease-in forwards !important;
+    animation: hyperJump 1s ease-in forwards !important;
 }
 
 @keyframes hyperJump {
@@ -603,12 +603,8 @@
         transform: scale(1);
         opacity: 1;
     }
-    50% {
-        transform: scale(1) translateZ(0);
-        opacity: 1;
-    }
     100% {
-        transform: scaleY(50) translateY(-50vh);
+        transform: scale(3);
         opacity: 0;
     }
 }
@@ -621,37 +617,100 @@
     height: 100%;
     z-index: 100;
     pointer-events: none;
-    background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+    overflow: hidden;
 }
 
 .hyperspace-streak {
     position: absolute;
+    top: 50%;
+    left: 50%;
     width: 2px;
     height: 0;
-    background: linear-gradient(to bottom, transparent, #fff, #a8d8ea);
-    animation: streakGrow 1s ease-in forwards;
+    background: linear-gradient(to top, transparent, #fff, #a8d8ea);
+    transform-origin: bottom center;
+    transform: rotate(var(--angle)) translateY(0);
+    animation: streakShoot 1.2s ease-in forwards;
     border-radius: 2px;
-    box-shadow: 0 0 4px #fff;
 }
 
-@keyframes streakGrow {
+@keyframes streakShoot {
     0% {
         height: 0;
         opacity: 0;
+        transform: rotate(var(--angle)) translateY(0);
     }
-    30% {
-        height: 20px;
+    20% {
+        height: 10px;
         opacity: 1;
     }
     100% {
-        height: 200px;
+        height: 150px;
         opacity: 0;
-        transform: translateY(-100vh) scaleY(3);
+        transform: rotate(var(--angle)) translateY(-50vh);
     }
+}
+
+.hyperspace-flash {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    opacity: 0;
+    animation: flashBang 1.5s ease-in-out forwards;
+}
+
+@keyframes flashBang {
+    0%, 60% { opacity: 0; }
+    75% { opacity: 0.8; }
+    100% { opacity: 0; }
+}
+
+/* Reverse hyperspace — streaks come inward */
+.hyperspace-reverse .hyperspace-streak {
+    animation: streakReturn 1.2s ease-out forwards;
+}
+
+.hyperspace-reverse .hyperspace-flash {
+    animation: flashBangReverse 1.5s ease-in-out forwards;
+}
+
+@keyframes streakReturn {
+    0% {
+        height: 150px;
+        opacity: 0;
+        transform: rotate(var(--angle)) translateY(-50vh);
+    }
+    30% {
+        opacity: 1;
+    }
+    100% {
+        height: 0;
+        opacity: 0;
+        transform: rotate(var(--angle)) translateY(0);
+    }
+}
+
+@keyframes flashBangReverse {
+    0% { opacity: 0.6; }
+    30% { opacity: 0; }
+    100% { opacity: 0; }
 }
 
 .hyperspace-fade {
     animation: fadeOutCards 0.8s ease-in forwards;
+}
+
+.hyperspace-hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.hyperspace-fade-in {
+    animation: fadeInCards 1s ease-out forwards;
+    animation-delay: 0.5s;
+    opacity: 0;
 }
 
 @keyframes fadeOutCards {
@@ -662,6 +721,17 @@
     100% {
         opacity: 0;
         transform: scale(0.8);
+    }
+}
+
+@keyframes fadeInCards {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
     }
 }
 
@@ -750,79 +820,72 @@
     border: 1px solid rgba(100, 150, 200, 0.15);
 }
 
-.continent {
+/* react-simple-maps Geography styling */
+.geo-default {
     fill: rgba(100, 150, 200, 0.12);
     stroke: rgba(100, 150, 200, 0.25);
     stroke-width: 0.5;
+    outline: none;
+    transition: fill 0.2s ease;
 }
 
-.visited-country {
+.geo-default:hover {
+    fill: rgba(100, 150, 200, 0.2);
+}
+
+.geo-us-default {
+    fill: rgba(100, 150, 200, 0.18);
+    stroke: rgba(100, 150, 200, 0.3);
+    stroke-width: 0.3;
+    outline: none;
+    transition: fill 0.2s ease;
+}
+
+.geo-us-default:hover {
+    fill: rgba(100, 150, 200, 0.25);
+}
+
+.geo-visited-country {
     fill: rgba(76, 233, 94, 0.5);
     stroke: #4ce95e;
     stroke-width: 0.8;
-    animation: locationPulse 2s ease-in-out infinite;
+    outline: none;
     cursor: pointer;
+    transition: fill 0.2s ease, filter 0.2s ease;
 }
 
-.visited-country:hover {
+.geo-visited-country:hover {
     fill: rgba(76, 233, 94, 0.8);
     filter: drop-shadow(0 0 6px rgba(76, 233, 94, 0.8));
 }
 
-.visited-state {
-    fill: rgba(168, 216, 234, 0.5);
-    stroke: #a8d8ea;
-    stroke-width: 0.6;
-    animation: locationPulse 2s ease-in-out infinite;
-    animation-delay: 0.5s;
+.geo-visited-state {
+    fill: rgba(76, 233, 94, 0.5);
+    stroke: #4ce95e;
+    stroke-width: 0.4;
+    outline: none;
     cursor: pointer;
+    transition: fill 0.2s ease, filter 0.2s ease;
 }
 
-.visited-state:hover {
-    fill: rgba(168, 216, 234, 0.8);
-    filter: drop-shadow(0 0 6px rgba(168, 216, 234, 0.8));
+.geo-visited-state:hover {
+    fill: rgba(76, 233, 94, 0.8);
+    filter: drop-shadow(0 0 6px rgba(76, 233, 94, 0.8));
 }
 
-@keyframes locationPulse {
-    0%, 100% { opacity: 0.7; }
-    50% { opacity: 1; }
-}
-
-.map-legend {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-}
-
-.legend-section h4 {
-    color: #e0e6ed;
-    margin: 0 0 0.8rem 0;
-    font-size: 0.95rem;
-}
-
-.legend-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-}
-
-.legend-tag {
-    padding: 0.25rem 0.6rem;
-    border-radius: 12px;
-    font-size: 0.75rem;
-    font-weight: 500;
-}
-
-.country-tag {
-    background: rgba(76, 233, 94, 0.15);
+.map-tooltip {
+    position: absolute;
+    background: rgba(10, 10, 20, 0.9);
+    border: 1px solid rgba(76, 233, 94, 0.5);
     color: #4ce95e;
-    border: 1px solid rgba(76, 233, 94, 0.3);
-}
-
-.state-tag {
-    background: rgba(168, 216, 234, 0.15);
-    color: #a8d8ea;
-    border: 1px solid rgba(168, 216, 234, 0.3);
+    padding: 0.3rem 0.7rem;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    pointer-events: none;
+    z-index: 20;
+    white-space: nowrap;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
 }
 
 /* Map responsive */
@@ -835,11 +898,6 @@
     .map-title {
         font-size: 1.2rem;
     }
-
-    .map-legend {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
 }
 
 @media (max-width: 480px) {
@@ -849,10 +907,5 @@
 
     .map-title {
         font-size: 1rem;
-    }
-
-    .legend-tag {
-        font-size: 0.65rem;
-        padding: 0.2rem 0.4rem;
     }
 }
